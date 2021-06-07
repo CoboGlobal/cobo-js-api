@@ -1,6 +1,7 @@
 import {LocalSigner} from "../src/LocalSigner";
 import {Client} from "../src/Client";
 
+jest.setTimeout(10000);
 const signer = new LocalSigner("e7e73fabdd9edb8bddf947954c400a63bf93edc57abf170544ec570757df5453");
 const client = new Client("0397ef0d81938bcf9587466ee33ab93caa77677416ada3297e70e92aa42245d99e",
     signer,
@@ -8,82 +9,82 @@ const client = new Client("0397ef0d81938bcf9587466ee33ab93caa77677416ada3297e70e
 
 test('test get account info', async () => {
     const res = await client.getAccountInfo();
-    expect(res.success).toBe(true);
+    expect(res.success).toBeTruthy();
 });
 
 test('test get coin info', async () => {
     const res = await client.getCoinInfo("ETH");
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test new address ', async () => {
     const res = await client.newDepositAddress("BTC", true);
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test batch new address ', async () => {
     const res = await client.batchNewDepositAddress("BTC", 4,true);
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test verify deposit address', async () => {
     const res = await client.verifyDepositAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test batch verify deposit address', async () => {
     const res = await client.batchVerifyDepositAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee,0x05325e6f9d1f0437bd78a72c2ae084fbb8c039e1");
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test valid address', async () => {
     let res = await client.verifyValidAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
-    expect(res.success).toBe(true);
-    expect(res.result).toBe(true);
+    expect(res.success).toBeTruthy();
+    expect(res.result).toBeTruthy();
     res = await client.verifyValidAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae084fbb8c03");
-    expect(res.success).toBe(true);
+    expect(res.success).toBeTruthy();
     expect(res.result).toBe(false);
 });
 
 
 test('test get address history', async () => {
     const res = await client.getAddressHistory("ETH");
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test check loop address details', async () => {
     const res = await client.checkLoopAddressDetails("ETH","0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a");
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test check loop address list', async () => {
     const res = await client.verifyLoopAddressList("ETH","0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a,0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test get transaction details', async () => {
     const res = await client.getTransactionDetail("20210422193807000343569000002370");
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test get transactions by id', async () => {
     const res = await client.getTransactionsById({});
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test get transactions by time', async () => {
     const res = await client.getTransactionsByTime({});
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test get pending transactions', async () => {
     const res = await client.getPendingTransactions({});
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test get pending deposit details', async () => {
     const res = await client.getPendingDepositDetails("20200604171238000354106000006405");
-    expect(res.success).toBe(true)
+    expect(res.success).toBeTruthy()
 });
 
 test('test withdraw', async () => {
@@ -94,53 +95,53 @@ test('test withdraw', async () => {
         amount: "1",
         memo: 'cobo'
     });
-    expect(res.success).toBe(true);
+    expect(res.success).toBeTruthy();
 });
 
 test('test query withdraw info', async () => {
     const res = await client.getWithdrawInfo("teth29374893624");
-    expect(res.success).toBe(true);
+    expect(res.success).toBeTruthy();
 });
 
 test('test get staking product details', async () => {
     let res = await client.getStakingProductList("DASH");
     const productId = res.result[0]['product_id'];
-    res = await client.getStakingProductList(productId,"en")
-    expect(res.success).toBe(true);
+    res = await client.getStakingProductDetails(productId);
+    expect(res.success).toBeTruthy();
 });
 
 test('test get staking product list', async () => {
     const res = await client.getStakingProductList();
-    expect(res.success).toBe(true);
+    expect(res.success).toBeTruthy();
 });
 
 test('test stake', async () => {
     let res = await client.getStakingProductList("DASH");
     const productId = res.result[0]['product_id'];
-    res = await client.stake(productId,"1000000")
+    res = await client.stake(productId,"1000000");
     console.log(res.result)
 });
 
 test('test unstake', async () => {
     let res = await client.getStakingProductList("DASH");
     const productId = res.result[0]['product_id'];
-    res = await client.unstake(productId,"1000000")
+    res = await client.unstake(productId,"1000000");
     console.log(res.result)
 });
 
 test('test get stakings', async () => {
-    const res = await client.getStakingData()
-    console.log(res.result)
+    const res = await client.getStakingData();
+    expect(res.success).toBeTruthy();
 });
 
 test('test get unstakings', async () => {
-    const res = await client.getUnstakingData()
-    console.log(res.result)
+    const res = await client.getUnstakingData();
+    expect(res.success).toBeTruthy();
 });
 
 test('test get staking history', async () => {
-    const res = await client.getStakingHistory({})
-    console.log(res.result)
+    const res = await client.getStakingHistory({});
+    expect(res.success).toBeTruthy();
 });
 
 
