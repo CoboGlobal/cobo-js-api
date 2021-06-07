@@ -23,25 +23,25 @@ test('test new address ', async () => {
 });
 
 test('test batch new address ', async () => {
-    const res = await client.batchNewDepositAddress("BTC", 4,true);
+    const res = await client.batchNewDepositAddress("BTC", 4, true);
     expect(res.success).toBeTruthy()
 });
 
 test('test verify deposit address', async () => {
-    const res = await client.verifyDepositAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
+    const res = await client.verifyDepositAddress("ETH", "0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
     expect(res.success).toBeTruthy()
 });
 
 test('test batch verify deposit address', async () => {
-    const res = await client.batchVerifyDepositAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee,0x05325e6f9d1f0437bd78a72c2ae084fbb8c039e1");
+    const res = await client.batchVerifyDepositAddress("ETH", "0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee,0x05325e6f9d1f0437bd78a72c2ae084fbb8c039e1");
     expect(res.success).toBeTruthy()
 });
 
 test('test valid address', async () => {
-    let res = await client.verifyValidAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
+    let res = await client.verifyValidAddress("ETH", "0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
     expect(res.success).toBeTruthy();
     expect(res.result).toBeTruthy();
-    res = await client.verifyValidAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae084fbb8c03");
+    res = await client.verifyValidAddress("ETH", "0x05325e6f9d1f0437bd78a72c2ae084fbb8c03");
     expect(res.success).toBeTruthy();
     expect(res.result).toBe(false);
 });
@@ -53,12 +53,12 @@ test('test get address history', async () => {
 });
 
 test('test check loop address details', async () => {
-    const res = await client.checkLoopAddressDetails("ETH","0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a");
+    const res = await client.checkLoopAddressDetails("ETH", "0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a");
     expect(res.success).toBeTruthy()
 });
 
 test('test check loop address list', async () => {
-    const res = await client.verifyLoopAddressList("ETH","0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a,0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
+    const res = await client.verifyLoopAddressList("ETH", "0xe7ebdc5bbb6c99cc8f7f2c1c83ff38aa6647f38a,0x05325e6f9d1f0437bd78a72c2ae084fbb8c039ee");
     expect(res.success).toBeTruthy()
 });
 
@@ -92,7 +92,7 @@ test('test withdraw', async () => {
         coin: "TETH",
         request_id: "request_id_" + String(new Date().getTime()),
         address: "0xb744adc8d75e115eec8e582eb5e8d60eb0972037",
-        amount: "1",
+        amount: BigInt("1"),
         memo: 'cobo'
     });
     expect(res.success).toBeTruthy();
@@ -100,6 +100,7 @@ test('test withdraw', async () => {
 
 test('test query withdraw info', async () => {
     const res = await client.getWithdrawInfo("teth29374893624");
+    console.log(res);
     expect(res.success).toBeTruthy();
 });
 
@@ -112,20 +113,21 @@ test('test get staking product details', async () => {
 
 test('test get staking product list', async () => {
     const res = await client.getStakingProductList();
+    console.log(res);
     expect(res.success).toBeTruthy();
 });
 
 test('test stake', async () => {
     let res = await client.getStakingProductList("DASH");
     const productId = res.result[0]['product_id'];
-    res = await client.stake(productId,"1000000");
-    console.log(res.result)
+    res = await client.stake(productId, BigInt("1000000"));
+    console.log(res)
 });
 
 test('test unstake', async () => {
     let res = await client.getStakingProductList("DASH");
     const productId = res.result[0]['product_id'];
-    res = await client.unstake(productId,"1000000");
+    res = await client.unstake(productId, BigInt("1000000"));
     console.log(res.result)
 });
 
