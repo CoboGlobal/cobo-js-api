@@ -42,16 +42,29 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Client = void 0;
 var node_fetch_1 = __importDefault(require("node-fetch"));
 var LocalSigner_1 = require("./LocalSigner");
+var url_1 = require("url");
 var Client = /** @class */ (function () {
     function Client(apiKey, signer, coboPub, host) {
         var _this = this;
         if (host === void 0) { host = "https://api.sandbox.cobo.com"; }
+        /***
+         * get account info
+         */
         this.getAccountInfo = function () {
             return _this.coboFetch("GET", "/v1/custody/org_info/", {});
         };
+        /***
+         * get coin info
+         * @param coin :coin code
+         */
         this.getCoinInfo = function (coin) {
             return _this.coboFetch("GET", "/v1/custody/coin_info/", { "coin": coin });
         };
+        /***
+         * new deposit address
+         * @param coin: coin code
+         * @param nativeSegwit: new segwit address
+         */
         this.newDepositAddress = function (coin, nativeSegwit) {
             if (nativeSegwit === void 0) { nativeSegwit = false; }
             var params = { "coin": coin };
@@ -60,6 +73,12 @@ var Client = /** @class */ (function () {
             }
             return _this.coboFetch("POST", "/v1/custody/new_address/", params);
         };
+        /***
+         * batch new deposit address
+         * @param coin: coin code
+         * @param count: address count
+         * @param nativeSegwit: new segwit address
+         */
         this.batchNewDepositAddress = function (coin, count, nativeSegwit) {
             if (nativeSegwit === void 0) { nativeSegwit = false; }
             var params = {
@@ -71,6 +90,11 @@ var Client = /** @class */ (function () {
             }
             return _this.coboFetch("POST", "/v1/custody/new_addresses/", params);
         };
+        /***
+         * verify deposit address
+         * @param coin: coin code
+         * @param address: address
+         */
         this.verifyDepositAddress = function (coin, address) {
             var params = {
                 "coin": coin,
@@ -78,6 +102,23 @@ var Client = /** @class */ (function () {
             };
             return _this.coboFetch("GET", "/v1/custody/address_info/", params);
         };
+        /***
+         * verify deposit address
+         * @param coin: coin code
+         * @param addresses: address
+         */
+        this.batchVerifyDepositAddress = function (coin, addresses) {
+            var params = {
+                "coin": coin,
+                "address": addresses
+            };
+            return _this.coboFetch("GET", "/v1/custody/addresses_info/", params);
+        };
+        /***
+         * verify address valid
+         * @param coin: coin code
+         * @param address: address
+         */
         this.verifyValidAddress = function (coin, address) {
             var params = {
                 "coin": coin,
@@ -85,7 +126,7 @@ var Client = /** @class */ (function () {
             };
             return _this.coboFetch("GET", "/v1/custody/is_valid_address/", params);
         };
-        this.getAddressHistory = function (coin, address) {
+        this.getAddressHistory = function (coin) {
             var params = {
                 "coin": coin,
             };
@@ -127,9 +168,6 @@ var Client = /** @class */ (function () {
         this.getPendingDepositDetails = function (id) {
             return _this.coboFetch("GET", "/v1/custody/pending_transaction/", { "id": id });
         };
-        this.getTransactionHistory = function (params) {
-            return _this.coboFetch("GET", "/v1/custody/transaction_history/", params);
-        };
         this.withdraw = function (params) {
             return _this.coboFetch("POST", "/v1/custody/new_withdraw_request/", params);
         };
@@ -140,8 +178,6 @@ var Client = /** @class */ (function () {
             return _this.coboFetch("GET", "/v1/custody/staking_product/", { "product_id": id });
         };
         this.getStakingProductList = function (coin, language) {
-            if (coin === void 0) { coin = null; }
-            if (language === void 0) { language = null; }
             var params = {};
             if (coin != null) {
                 params["coin"] = coin;
@@ -166,8 +202,6 @@ var Client = /** @class */ (function () {
             return _this.coboFetch("POST", "/v1/custody/staking_unstake/", params);
         };
         this.getStakingData = function (coin, language) {
-            if (coin === void 0) { coin = null; }
-            if (language === void 0) { language = null; }
             var params = {};
             if (coin != null) {
                 params["coin"] = coin;
@@ -178,7 +212,6 @@ var Client = /** @class */ (function () {
             return _this.coboFetch("GET", "/v1/custody/stakings/", params);
         };
         this.getUnstakingData = function (coin) {
-            if (coin === void 0) { coin = null; }
             var params = {};
             if (coin != null) {
                 params["coin"] = coin;
@@ -214,14 +247,13 @@ var Client = /** @class */ (function () {
                         return [3 /*break*/, 5];
                     case 2:
                         if (!(method == 'POST')) return [3 /*break*/, 4];
-                        urlParams = new URLSearchParams();
+                        urlParams = new url_1.URLSearchParams();
                         for (k in params) {
                             urlParams.append(k, params[k]);
                         }
                         return [4 /*yield*/, node_fetch_1.default(this.host + path, {
                                 method: method,
                                 headers: headers,
-                                //@ts-ignore
                                 body: urlParams
                             })];
                     case 3:

@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import {Signer} from "./Signer";
 import {LocalSigner} from "./LocalSigner";
+import { URLSearchParams } from "url"
 
 export class Client {
     private readonly apiKey: string;
@@ -15,14 +16,26 @@ export class Client {
         this.signer = signer;
     }
 
+    /***
+     * get account info
+     */
     getAccountInfo = () => {
         return this.coboFetch("GET", "/v1/custody/org_info/", {});
     };
 
+    /***
+     * get coin info
+     * @param coin :coin code
+     */
     getCoinInfo = (coin: string) => {
         return this.coboFetch("GET", "/v1/custody/coin_info/", {"coin": coin});
     };
 
+    /***
+     * new deposit address
+     * @param coin: coin code
+     * @param nativeSegwit: new segwit address
+     */
     newDepositAddress = (coin: string, nativeSegwit = false) => {
         let params: any = {"coin": coin};
         if (nativeSegwit) {
@@ -31,6 +44,12 @@ export class Client {
         return this.coboFetch("POST", "/v1/custody/new_address/", params);
     };
 
+    /***
+     * batch new deposit address
+     * @param coin: coin code
+     * @param count: address count
+     * @param nativeSegwit: new segwit address
+     */
     batchNewDepositAddress = (coin: string, count: number, nativeSegwit = false) => {
         let params: any = {
             "coin": coin,
@@ -42,6 +61,11 @@ export class Client {
         return this.coboFetch("POST", "/v1/custody/new_addresses/", params);
     };
 
+    /***
+     * verify deposit address
+     * @param coin: coin code
+     * @param address: address
+     */
     verifyDepositAddress = (coin: string, address: string) => {
         let params: any = {
             "coin": coin,
@@ -50,6 +74,24 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/address_info/", params);
     };
 
+    /***
+     * verify deposit address
+     * @param coin: coin code
+     * @param addresses: address
+     */
+    batchVerifyDepositAddress = (coin: string, addresses: string) => {
+        let params: any = {
+            "coin": coin,
+            "address": addresses
+        };
+        return this.coboFetch("GET", "/v1/custody/addresses_info/", params);
+    };
+
+    /***
+     * verify address valid
+     * @param coin: coin code
+     * @param address: address
+     */
     verifyValidAddress = (coin: string, address: string) => {
         let params: any = {
             "coin": coin,
@@ -58,7 +100,7 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/is_valid_address/", params);
     };
 
-    getAddressHistory = (coin: string, address: string) => {
+    getAddressHistory = (coin: string) => {
         let params: any = {
             "coin": coin,
         };
@@ -107,10 +149,6 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/pending_transaction/", {"id": id});
     };
 
-    getTransactionHistory = (params: string) => {
-        return this.coboFetch("GET", "/v1/custody/transaction_history/", params);
-    };
-
     withdraw = (params: WithdrawParams) => {
         return this.coboFetch("POST", "/v1/custody/new_withdraw_request/", params);
     };
@@ -123,7 +161,7 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/staking_product/", {"product_id": id});
     };
 
-    getStakingProductList = (coin = null, language = null) => {
+    getStakingProductList = (coin?:string, language?:string) => {
         let params: any = {};
         if (coin != null) {
             params["coin"] = coin;
@@ -151,7 +189,7 @@ export class Client {
         return this.coboFetch("POST", "/v1/custody/staking_unstake/", params);
     };
 
-    getStakingData = (coin = null, language = null) => {
+    getStakingData = (coin?:string, language?:"en") => {
         let params: any = {};
         if (coin != null) {
             params["coin"] = coin;
@@ -162,7 +200,7 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/stakings/", params);
     };
 
-    getUnstakingData = (coin = null) => {
+    getUnstakingData = (coin?:string) => {
         let params: any = {};
         if (coin != null) {
             params["coin"] = coin;
@@ -202,7 +240,6 @@ export class Client {
             response = await fetch(this.host + path, {
                 method: method,
                 headers: headers,
-                //@ts-ignore
                 body: urlParams
             });
 
