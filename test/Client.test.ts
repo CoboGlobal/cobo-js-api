@@ -105,7 +105,7 @@ test('test query withdraw info', async () => {
 });
 
 test('test get staking product details', async () => {
-    let res = await client.getStakingProductList("DASH");
+    let res = await client.getStakingProductList("IOST");
     const productId = res.result[0]['product_id'];
     res = await client.getStakingProductDetails(productId);
     expect(res.success).toBeTruthy();
@@ -118,14 +118,14 @@ test('test get staking product list', async () => {
 });
 
 test('test stake', async () => {
-    let res = await client.getStakingProductList("DASH");
+    let res = await client.getStakingProductList("IOST");
     const productId = res.result[0]['product_id'];
     res = await client.stake(productId, BigInt("1000000"));
     console.log(res)
 });
 
 test('test unstake', async () => {
-    let res = await client.getStakingProductList("DASH");
+    let res = await client.getStakingProductList("IOST");
     const productId = res.result[0]['product_id'];
     res = await client.unstake(productId, BigInt("1000000"));
     console.log(res.result)

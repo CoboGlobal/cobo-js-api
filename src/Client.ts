@@ -317,7 +317,9 @@ export class Client {
             let urlParams = new URLSearchParams();
 
             for (let k in params) {
-                urlParams.append(k, params[k])
+                if (params.hasOwnProperty(k)) {
+                    urlParams.append(k, params[k])
+                }
             }
 
             response = await fetch(this.host + path, {
