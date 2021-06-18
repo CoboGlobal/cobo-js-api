@@ -1,5 +1,5 @@
-import {LocalSigner} from "../src/LocalSigner";
-import {Client} from "../index";
+import {LocalSigner} from "..";
+import {Client} from "..";
 
 jest.setTimeout(10000);
 const signer = new LocalSigner("e7e73fabdd9edb8bddf947954c400a63bf93edc57abf170544ec570757df5453");

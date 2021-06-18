@@ -1,4 +1,4 @@
-import {LocalSigner} from "../src/LocalSigner";
+import {LocalSigner} from "..";
 
 test("generate new key pair",()=>{
     const keyPair = LocalSigner.newKeyPair();
