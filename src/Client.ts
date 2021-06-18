@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import {Signer} from "./Signer";
 import {LocalSigner} from "./LocalSigner";
-import { URLSearchParams } from "url"
+import {URLSearchParams} from "url"
 
 export class Client {
     private readonly apiKey: string;
@@ -9,6 +9,13 @@ export class Client {
     private readonly host: string;
     private signer: Signer;
 
+    /***
+     * constructor
+     * @param apiKey: api key
+     * @param signer: api signer
+     * @param coboPub: cobo pub
+     * @param host:host
+     */
     constructor(apiKey: string, signer: Signer, coboPub: string, host = "https://api.sandbox.cobo.com") {
         this.apiKey = apiKey;
         this.coboPub = coboPub;
@@ -100,6 +107,10 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/is_valid_address/", params);
     };
 
+    /***
+     * get address history
+     * @param coin: coin code
+     */
     getAddressHistory = (coin: string) => {
         let params: any = {
             "coin": coin,
@@ -107,6 +118,12 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/address_history/", params);
     };
 
+    /***
+     * check loop address derails
+     * @param coin: coin code
+     * @param address: address
+     * @param memo: memo
+     */
     checkLoopAddressDetails = (coin: string, address: string, memo = null) => {
         let params: any = {
             "coin": coin,
@@ -118,6 +135,11 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/internal_address_info/", params);
     };
 
+    /***
+     * verify loop address list
+     * @param coin: coin code
+     * @param address: addresses, separated by ','
+     */
     verifyLoopAddressList = (coin: string, address: string) => {
         let params: any = {
             "coin": coin,
@@ -126,6 +148,10 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/internal_address_info_batch/", params);
     };
 
+    /***
+     * get transaction details
+     * @param id :transaction id
+     */
     getTransactionDetail = (id: string) => {
         let params: any = {
             "id": id,
@@ -133,35 +159,68 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/transaction/", params);
     };
 
+    /***
+     * get transaction by id
+     * @param params : TransactionQueryParams
+     */
     getTransactionsById = (params: TransactionQueryParams) => {
         return this.coboFetch("GET", "/v1/custody/transactions_by_id/", params);
     };
 
+    /***
+     * get transaction by time
+     * @param params : TransactionQueryParams
+     */
     getTransactionsByTime = (params: TransactionQueryParams) => {
         return this.coboFetch("GET", "/v1/custody/transactions_by_time/", params);
     };
 
+    /***
+     * get pending transactions
+     * @param params : TransactionQueryParams
+     */
     getPendingTransactions = (params: TransactionQueryParams) => {
         return this.coboFetch("GET", "/v1/custody/pending_transactions/", params);
     };
 
+    /***
+     * get pending transaction deposit details
+     * @param id: transaction id
+     */
     getPendingDepositDetails = (id: string) => {
         return this.coboFetch("GET", "/v1/custody/pending_transaction/", {"id": id});
     };
 
+    /***
+     * withdraw
+     * @param params:WithdrawParams
+     */
     withdraw = (params: WithdrawParams) => {
         return this.coboFetch("POST", "/v1/custody/new_withdraw_request/", params);
     };
 
+    /***
+     * query withdraw info
+     * @param id: request_id
+     */
     getWithdrawInfo = (id: string) => {
         return this.coboFetch("GET", "/v1/custody/withdraw_info_by_request_id/", {"request_id": id});
     };
 
-    getStakingProductDetails = (id: string) => {
-        return this.coboFetch("GET", "/v1/custody/staking_product/", {"product_id": id});
+    /***
+     * get staking product details
+     * @param productId: product id
+     */
+    getStakingProductDetails = (productId: string) => {
+        return this.coboFetch("GET", "/v1/custody/staking_product/", {"product_id": productId});
     };
 
-    getStakingProductList = (coin?:string, language?:string) => {
+    /***
+     * get staking product list
+     * @param coin
+     * @param language
+     */
+    getStakingProductList = (coin?: string, language?: string) => {
         let params: any = {};
         if (coin != null) {
             params["coin"] = coin;
@@ -170,10 +229,16 @@ export class Client {
             params["language"] = language;
         }
 
+        console.log(params);
         return this.coboFetch("GET", "/v1/custody/staking_products/", params);
     };
 
-    stake = (productId: string, amount: string) => {
+    /***
+     * stake
+     * @param productId: product id
+     * @param amount: amount
+     */
+    stake = (productId: string, amount: BigInt) => {
         let params: any = {
             "product_id": productId,
             "amount": amount
@@ -181,7 +246,12 @@ export class Client {
         return this.coboFetch("POST", "/v1/custody/staking_stake/", params);
     };
 
-    unstake = (productId: string, amount: string) => {
+    /***
+     * unstake
+     * @param productId: product id
+     * @param amount: amount
+     */
+    unstake = (productId: string, amount: BigInt) => {
         let params: any = {
             "product_id": productId,
             "amount": amount
@@ -189,7 +259,12 @@ export class Client {
         return this.coboFetch("POST", "/v1/custody/staking_unstake/", params);
     };
 
-    getStakingData = (coin?:string, language?:"en") => {
+    /***
+     * get staking data
+     * @param coin: coin code
+     * @param language:language
+     */
+    getStakingData = (coin?: string, language?: "en") => {
         let params: any = {};
         if (coin != null) {
             params["coin"] = coin;
@@ -200,7 +275,11 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/stakings/", params);
     };
 
-    getUnstakingData = (coin?:string) => {
+    /***
+     * get unstaking data
+     * @param coin: coin code
+     */
+    getUnstakingData = (coin?: string) => {
         let params: any = {};
         if (coin != null) {
             params["coin"] = coin;
@@ -208,6 +287,10 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/unstakings/", params);
     };
 
+    /***
+     * get Staking History
+     * @param params:StakingQueryParams
+     */
     getStakingHistory = (params: StakingQueryParams) => {
         return this.coboFetch("GET", "/v1/custody/unstakings/", params);
     };
@@ -234,7 +317,9 @@ export class Client {
             let urlParams = new URLSearchParams();
 
             for (let k in params) {
-                urlParams.append(k, params[k])
+                if (params.hasOwnProperty(k)) {
+                    urlParams.append(k, params[k])
+                }
             }
 
             response = await fetch(this.host + path, {
@@ -278,7 +363,7 @@ export interface WithdrawParams {
     coin: string,
     request_id: string,
     address: string,
-    amount: string,
+    amount: BigInt,
     memo?: string,
     force_internal?: string,
     for_external?: string,
