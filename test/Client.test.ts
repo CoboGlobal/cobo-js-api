@@ -2,10 +2,8 @@ import {LocalSigner} from "..";
 import {Client} from "..";
 
 jest.setTimeout(10000);
-const signer = new LocalSigner("e7e73fabdd9edb8bddf947954c400a63bf93edc57abf170544ec570757df5453");
-const client = new Client("0397ef0d81938bcf9587466ee33ab93caa77677416ada3297e70e92aa42245d99e",
-    signer,
-    "032f45930f652d72e0c90f71869dfe9af7d713b1f67dc2f7cb51f9572778b9c876");
+const signer = new LocalSigner("secretKey");
+const client = new Client("apiKey", signer, "coboPub");
 
 test('test get account info', async () => {
     const res = await client.getAccountInfo();

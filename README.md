@@ -6,6 +6,7 @@ cobo-js-api is a lightweight Javascript library for interacting with the [Cobo C
 * [Test](#test)
 * [Usage](#usage)
   * [Initialize](#initialize)
+     * [Generate Key Pair](#generate-key-pair)
      * [Initialize RestClient](#initialize-restclient)
      * [Initialize ApiSigner](#initialize-apisigner)
   * [Account](#account)
@@ -44,8 +45,14 @@ cobo-js-api is a lightweight Javascript library for interacting with the [Cobo C
 
 ## Installation
 
+download `release.tgz` from [release](https://github.com/cobowallet/cobo-js-api/releases), or run ` sh build.sh` to build your `release.tgz`
+
+add dependency in `package.json` 
 ```
- TODO
+  "dependencies": {
+     ...
+    "cobo-js-api": "file:release.tgz"
+  }
 ```
 
 
@@ -60,9 +67,20 @@ yarn test
 
 ### Initialize
 
+#### Generate Key Pair
+
+```js
+const { LocalSigner } = require("cobo-js-api");
+const keyPair = LocalSigner.newKeyPair();
+console.log(keyPair);
+```
+Please refer to the [link](https://doc.custody.cobo.com/en.html#api-authentication) for how to use apiKey
+
 #### Initialize RestClient
 
-```typescript
+```js
+const { Client } = require('cobo-js-api');
+const { LocalSigner } = require("cobo-js-api");
 const client = new Client("API_KEY",API_SIGNER,"COBO_PUB")
 ```
 
