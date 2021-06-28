@@ -49,7 +49,7 @@ add dependency in `package.json`
 ```
   "dependencies": {
      ...
-    "cobo-js-api": "https://github.com/CoboCustody/cobo-js-api/releases/download/v0.1/release.tgz"
+    "cobo-js-api": "https://github.com/CoboCustody/cobo-js-api/releases/download/v0.20/release.tgz"
   }
 ```
 

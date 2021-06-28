@@ -2,6 +2,7 @@ import fetch from 'node-fetch';
 import {Signer} from "./Signer";
 import {LocalSigner} from "./LocalSigner";
 import {URLSearchParams} from "url"
+import sha256 = require("sha256");
 
 export class Client {
     private readonly apiKey: string;
@@ -196,6 +197,7 @@ export class Client {
      * @param params:WithdrawParams
      */
     withdraw = (params: WithdrawParams) => {
+        params.request_id = params.request_id || `sdk_request_id_${sha256(params.address).slice(0, 8)}_${Date.now()}`;
         return this.coboFetch("POST", "/v1/custody/new_withdraw_request/", params);
     };
 
@@ -361,7 +363,7 @@ export interface TransactionQueryParams {
 
 export interface WithdrawParams {
     coin: string,
-    request_id: string,
+    request_id?: string,
     address: string,
     amount: BigInt,
     memo?: string,
