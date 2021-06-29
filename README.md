@@ -46,10 +46,11 @@ cobo-js-api is a lightweight Javascript library for interacting with the [Cobo C
 ## Installation
 
 add dependency in `package.json` 
+
 ```
   "dependencies": {
      ...
-    "cobo-js-api": "https://github.com/CoboCustody/cobo-js-api/releases/download/v0.20/release.tgz"
+    "cobo-js-api": "https://github.com/CoboCustody/cobo-js-api/releases/download/v0.27/release.tgz"
   }
 ```
 
@@ -79,13 +80,20 @@ Please refer to the [link](https://doc.custody.cobo.com/en.html#api-authenticati
 ```js
 const { Client } = require('cobo-js-api');
 const { LocalSigner } = require("cobo-js-api");
-const client = new Client("API_KEY",API_SIGNER,"COBO_PUB")
+const {SANDBOX,PROD} = require("cobo-js-api");
+const client = new Client(API_SIGNER, SANDBOX, true)
 ```
+
 
 #### Initialize ApiSigner
 
 
-`ApiSigner` can be instantiated through `const signer = new LocalSigner("API_SECRET")`
+`ApiSigner` can be instantiated through 
+
+```javascript
+const { LocalSigner } = require("cobo-js-api");
+const signer = new LocalSigner("e7e73fabdd9edb8bddf947954c400a63bf93edc57abf170544ec570757df5453");
+```
 
 In some cases, your private key cannot be exported, for example, your private key is in aws kms, you should pass in your own implementation by implements `ApiSigner` interface
 

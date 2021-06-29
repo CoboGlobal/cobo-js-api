@@ -3,25 +3,27 @@ import {Signer} from "./Signer";
 import {LocalSigner} from "./LocalSigner";
 import {URLSearchParams} from "url"
 import sha256 = require("sha256");
+import {Env} from "./Env";
 
 export class Client {
     private readonly apiKey: string;
     private readonly coboPub: string;
     private readonly host: string;
-    private signer: Signer;
+    private readonly signer: Signer;
+    private readonly debug: boolean;
 
     /***
-     * constructor
-     * @param apiKey: api key
-     * @param signer: api signer
-     * @param coboPub: cobo pub
-     * @param host:host
+     *
+     * @param signer api signer
+     * @param env SANDBOX or PROD
+     * @param debug
      */
-    constructor(apiKey: string, signer: Signer, coboPub: string, host = "https://api.sandbox.cobo.com") {
-        this.apiKey = apiKey;
-        this.coboPub = coboPub;
-        this.host = host;
+    constructor(signer: Signer, env: Env, debug: boolean = false) {
+        this.apiKey = signer.getPublicKey();
+        this.coboPub = env.coboPub;
+        this.host = env.host;
         this.signer = signer;
+        this.debug = debug;
     }
 
     /***
@@ -231,7 +233,6 @@ export class Client {
             params["language"] = language;
         }
 
-        console.log(params);
         return this.coboFetch("GET", "/v1/custody/staking_products/", params);
     };
 
@@ -309,6 +310,10 @@ export class Client {
             'Biz-Api-Signature': this.signer.sign(content)
         };
         let response;
+
+        if (this.debug) {
+            console.log("request >>>>>>>> \nmethod:",method,"\npath:",path,"\ncontent:", content,"\nheaders:",headers);
+        }
         if (method == 'GET') {
             let url = this.host + path + '?' + sort_params;
             response = await fetch(url, {
@@ -340,6 +345,11 @@ export class Client {
             throw Error("signature or ts null")
         }
         let json = await response.text();
+
+        if (this.debug) {
+            console.log("response <<<<<<<< \njson:",json,"\nsig:",sig,"\nts:", ts);
+        }
+
         if (LocalSigner.verifyEccSignature(`${json}|${ts}`, sig, this.coboPub)) {
             return JSON.parse(json);
         }

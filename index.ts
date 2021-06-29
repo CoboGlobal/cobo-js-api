@@ -8,7 +8,10 @@ import {
   ApiResponse,
 } from "./src/Client";
 
-export { Client, LocalSigner };
+import {SANDBOX, PROD} from "./src/Env";
+export {SANDBOX, PROD}
+
+export { Client, LocalSigner};
 export {
   TransactionQueryParams,
   WithdrawParams,
