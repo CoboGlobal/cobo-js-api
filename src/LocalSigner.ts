@@ -47,4 +47,11 @@ export class LocalSigner implements Signer {
             pubKey: key.getPublic(true, 'hex'),
         }
     };
+
+    public getPublicKey= () => {
+        const secp256k1 = new EC('secp256k1');
+        let privateKey = Buffer.from(this.privKey, 'hex');
+        let keyPair = secp256k1.keyFromPrivate(privateKey);
+        return keyPair.getPublic().encodeCompressed('hex')
+    }
 }
