@@ -50,7 +50,7 @@ add dependency in `package.json`
 ```
   "dependencies": {
      ...
-    "cobo-js-api": "https://github.com/CoboCustody/cobo-js-api/releases/download/v0.28/release.tgz"
+    "cobo-custody": "https://github.com/CoboCustody/cobo-js-api/releases/download/v0.28/release.tgz"
   }
 ```
 
@@ -93,7 +93,7 @@ const client = new Client(API_SIGNER, SANDBOX, true)
 `ApiSigner` can be instantiated through 
 
 ```javascript
-const { LocalSigner } = require("cobo-js-api");
+const { LocalSigner } = require("cobo-custody");
 const signer = new LocalSigner("e7e73fabdd9edb8bddf947954c400a63bf93edc57abf170544ec570757df5453");
 ```
 
