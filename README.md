@@ -50,7 +50,7 @@ add dependency in `package.json`
 ```
   "dependencies": {
      ...
-    "cobo-js-api": "https://github.com/CoboCustody/cobo-js-api/releases/download/v0.27/release.tgz"
+    "cobo-js-api": "https://github.com/CoboCustody/cobo-js-api/releases/download/v0.28/release.tgz"
   }
 ```
 
@@ -69,7 +69,9 @@ yarn test
 #### Generate Key Pair
 
 ```js
-const { LocalSigner } = require("cobo-js-api");
+
+const { LocalSigner } = require('cobo-custody');
+
 const keyPair = LocalSigner.newKeyPair();
 console.log(keyPair);
 ```
@@ -78,9 +80,9 @@ Please refer to the [link](https://doc.custody.cobo.com/en.html#api-authenticati
 #### Initialize RestClient
 
 ```js
-const { Client } = require('cobo-js-api');
-const { LocalSigner } = require("cobo-js-api");
-const {SANDBOX,PROD} = require("cobo-js-api");
+const { Client } = require('cobo-custody');
+const { LocalSigner } = require('cobo-custody');
+const {SANDBOX,PROD} = require('cobo-custody');
 const client = new Client(API_SIGNER, SANDBOX, true)
 ```
 

@@ -1,6 +1,6 @@
 {
-  "name": "cobo-js-api",
-  "version": "0.27",
+  "name": "cobo-custody",
+  "version": "0.28",
   "description": "",
   "main": "out/index.js",
   "files": [
