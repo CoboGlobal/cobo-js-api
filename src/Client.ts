@@ -2,8 +2,8 @@ import fetch from 'node-fetch';
 import {Signer} from "./Signer";
 import {LocalSigner} from "./LocalSigner";
 import {URLSearchParams} from "url"
-import sha256 = require("sha256");
 import {Env} from "./Env";
+import sha256 = require("sha256");
 
 export class Client {
     private readonly apiKey: string;
@@ -312,7 +312,7 @@ export class Client {
         let response;
 
         if (this.debug) {
-            console.log("request >>>>>>>> \nmethod:",method,"\npath:",path,"\ncontent:", content,"\nheaders:",headers);
+            console.log("request >>>>>>>> \nmethod:", method, "\npath:", path, "\ncontent:", content, "\nheaders:", headers);
         }
         if (method == 'GET') {
             let url = this.host + path + '?' + sort_params;
@@ -347,7 +347,7 @@ export class Client {
         let json = await response.text();
 
         if (this.debug) {
-            console.log("response <<<<<<<< \njson:",json,"\nsig:",sig,"\nts:", ts);
+            console.log("response <<<<<<<< \njson:", json, "\nsig:", sig, "\nts:", ts);
         }
 
         if (LocalSigner.verifyEccSignature(`${json}|${ts}`, sig, this.coboPub)) {

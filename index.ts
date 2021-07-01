@@ -1,20 +1,14 @@
-import { Client } from "./src/Client";
-import { LocalSigner } from "./src/LocalSigner";
+import {ApiResponse, Client, StakingQueryParams, TransactionQueryParams, WithdrawParams} from "./src/Client";
+import {LocalSigner} from "./src/LocalSigner";
 
-import {
-  TransactionQueryParams,
-  WithdrawParams,
-  StakingQueryParams,
-  ApiResponse,
-} from "./src/Client";
+import {PROD, SANDBOX} from "./src/Env";
 
-import {SANDBOX, PROD} from "./src/Env";
 export {SANDBOX, PROD}
 
-export { Client, LocalSigner};
+export {Client, LocalSigner};
 export {
-  TransactionQueryParams,
-  WithdrawParams,
-  StakingQueryParams,
-  ApiResponse,
+    TransactionQueryParams,
+    WithdrawParams,
+    StakingQueryParams,
+    ApiResponse,
 };

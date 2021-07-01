@@ -1,10 +1,9 @@
-import {LocalSigner} from "..";
-import {Client} from "..";
+import {Client, LocalSigner} from "..";
 import {SANDBOX} from "../src/Env";
 
 jest.setTimeout(10000);
 const signer = new LocalSigner("apiSecret");
-const client = new Client(signer, SANDBOX,false);
+const client = new Client(signer, SANDBOX, false);
 
 test('test get account info', async () => {
     const res = await client.getAccountInfo();
