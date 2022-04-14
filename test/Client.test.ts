@@ -4,16 +4,22 @@ import {PROD} from "./config";
 import {SANDBOX_TEST_DATA} from "./config";
 import {PROD_TEST_DATA} from "./config";
 
-const paramEnv = process.argv.filter((x) => x.startsWith('-env='))[0].split('=')[1]
-console.log(paramEnv)
-const env = paramEnv ? paramEnv : "sandbox" 
-const paramApiSecret = process.argv.filter((x) => x.startsWith('-key='))[0]
-const apiSecret = paramApiSecret ? paramApiSecret.split('=')[1] : 'apiSecret' 
-const testData = env==="prod" ? PROD_TEST_DATA: SANDBOX_TEST_DATA
+var apiSecret:string = 'apiSecret';
+var clientEnv:any = SANDBOX;
+var testData:any = SANDBOX_TEST_DATA
+
+if(process.argv.length > 3){
+    const paramEnv = process.argv.filter((x) => x.startsWith('-env='))[0].split('=')[1];
+    const env = paramEnv ? paramEnv : 'sandbox';
+    clientEnv = env==='prod' ? PROD: SANDBOX;
+    const paramApiSecret = process.argv.filter((x) => x.startsWith('-key='))[0].split('=')[1]
+    apiSecret = paramApiSecret ? paramApiSecret: 'apiSecret' 
+    testData = env==='prod' ? PROD_TEST_DATA: SANDBOX_TEST_DATA;
+}
 
 jest.setTimeout(10000);
 const signer = new LocalSigner(apiSecret);
-const client = new Client(signer, env==="prod" ? PROD: SANDBOX, false);
+const client = new Client(signer, clientEnv, false);
 
 test('test get account info', async () => {
     const res = await client.getAccountInfo();

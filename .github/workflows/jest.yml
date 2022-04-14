@@ -10,10 +10,10 @@ on:
         options:
           - sandbox
           - prod
-  # push:
-  #  branches: [ main ]
-  # pull_request:
-  #  branches: [ main ]
+  push:
+   branches: [ main ]
+  pull_request:
+   branches: [ main ]
 
 jobs:
   test:
@@ -25,7 +25,8 @@ jobs:
       - name: run testcase
         env:
             SECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODSECRET || secrets.SANDBOXSECRET}}"
+            ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'sandbox'}}"
         run: |
           yarn test test/LocalSigner.test.ts
-          yarn test test/Client.test.ts -env=${{ github.event.inputs.environment }} -key=$SECRET
-          
+          yarn test test/Client.test.ts -env=$ENV -key=$SECRET
+        
