@@ -111,8 +111,8 @@ it.each`
 
 it.each`
     coin     | count             
-    ${'BTC'} | 2                    
-    ${'XRP'} | 2              
+    ${'BTC'} |  ${2}                     
+    ${'XRP'} |  ${2}           
 `('test batch verify valid $coin deposit address', async ({coin, count}) => {
     const res = await client.batchVerifyDepositAddress(coin, testData.deposit_addresses[coin]);
     expect(res.success).toBeTruthy();
@@ -123,8 +123,8 @@ it.each`
     coin     | addresses           
     ${'BTC'} | ${'3Kd5rjiLtvpHv5nhYQNTTeRLgrz4om32PJ,bc1q9unqc738dxjg5mk8zqtz33zg59cahrj29s24lp'}                   
     ${'XRP'} | ${'rndm7RphBZG6CpZvKcG9AjoFbSvcKhwLCx,rrBD4sBsxrpzbohAEYWH4moPSsoxupWLA|00000000'}               
-`('test batch verify invalid $coin deposit address', async ({coin}) => {
-    const res = await client.batchVerifyDepositAddress(coin, testData.deposit_addresses[coin]);
+`('test batch verify invalid $coin deposit address', async ({coin, addresses}) => {
+    const res = await client.batchVerifyDepositAddress(coin, addresses);
     expect(res.success).toBeTruthy();
     expect(res.result['addresses'].length).toEqual(0);
 });
@@ -238,9 +238,8 @@ test('test get pending deposit details', async () => {
 
 it.each`
     coin          | address                                         |memo            |amount
-    ${'COBO_ETH'} | ${'0xE410157345be56688F43FF0D9e4B2B38Ea8F7828'} |${null}         |${BigInt('1')}               
-    ${'XRP'}      | ${'rndm7RphBZG6CpZvKcG9AjoFbSvcKhwLCx'}         |${null}         |${BigInt('1')}  
-    ${'XRP'}      | ${'rGNXLMNHkUEtoo7qkCSHEm2sfMo8F969oZ'}         |${'2200701580'} |${BigInt('1')}   
+    ${'COBO_ETH'} | ${'0xE410157345be56688F43FF0D9e4B2B38Ea8F7828'} |${null}         |${BigInt('1')}                
+    ${'XLM'}      | ${'GBJDU6TPWHKGV7HRLNTIBA46MG3MB5DUG6BISHX3BF7I75H2HLPV6RJX'}    |${'4e73f03b'} |${BigInt('1')}   
 `('test $coin withdraw', async ({coin, address, memo, amount}) => {
     const res = await client.withdraw({
         coin: coin,
@@ -254,13 +253,11 @@ it.each`
 
 test('test query withdraw info', async () => {
     const res = await client.getWithdrawInfo(testData.withdraw_id);
-    console.log(res);
     expect(res.success).toBeTruthy();
 });
 
 test('test get staking product list', async () => {
     const res = await client.getStakingProductList();
-    console.log(res);
     expect(res.success).toBeTruthy();
 });
 
@@ -288,7 +285,6 @@ test('test unstake', async () => {
     if(stakings.result.length >0){
         const productId = stakings.result[0]['product_id'];
         const res = await client.unstake(productId, BigInt('1000000'));
-        console.log(res.result);
     }
     else{
         xtest;
