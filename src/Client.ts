@@ -163,6 +163,17 @@ export class Client {
     };
 
     /***
+     * get transactions by txid
+     * @param txid : txid
+     */
+    getTransactionsByTxId = (txid: string) => {
+        let params: any = {
+            "txid": txid,
+        };
+        return this.coboFetch("GET", "/v1/custody/transaction_by_txid/", params);
+    };
+
+    /***
      * get transaction by id
      * @param params : TransactionQueryParams
      */
