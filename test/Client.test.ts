@@ -214,6 +214,11 @@ test('test get transactions by id', async () => {
     expect(res.success).toBeTruthy();
 });
 
+test('test get transactions by txId', async () => {
+    const res = await client.getTransactionsByTxId("0x5d5396c3992ed524bf68a22a7ab6ae503f0349354ad69bc5204d5214085d4e9f");
+    expect(res.success).toBeTruthy()
+});
+
 test('test get transactions by time', async () => {
     const res = await client.getTransactionsByTime({});
     expect(res.success).toBeTruthy();
