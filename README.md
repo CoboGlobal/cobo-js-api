@@ -59,7 +59,7 @@ add dependency in `package.json`
 
 ```
 yarn build
-yarn test
+yarn test -env=sandbox/prod -secretKey=<yourApiSecret>
 ```
 
 ## Usage
