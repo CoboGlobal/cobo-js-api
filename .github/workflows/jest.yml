@@ -28,5 +28,5 @@ jobs:
             ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'sandbox'}}"
         run: |
           yarn test test/LocalSigner.test.ts
-          yarn test test/Client.test.ts -env=$ENV -key=$SECRET
+          yarn test test/Client.test.ts -env=$ENV -secretKey=$SECRET
         

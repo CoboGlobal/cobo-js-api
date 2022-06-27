@@ -12,7 +12,7 @@ if(process.argv.length > 3){
     const paramEnv = process.argv.filter((x) => x.startsWith('-env='))[0].split('=')[1];
     const env = paramEnv ? paramEnv : 'sandbox';
     clientEnv = env==='prod' ? PROD: SANDBOX;
-    const paramApiSecret = process.argv.filter((x) => x.startsWith('-key='))[0].split('=')[1]
+    const paramApiSecret = process.argv.filter((x) => x.startsWith('-secretKey='))[0].split('=')[1]
     apiSecret = paramApiSecret ? paramApiSecret: 'apiSecret' 
     testData = env==='prod' ? PROD_TEST_DATA: SANDBOX_TEST_DATA;
 }
@@ -160,7 +160,7 @@ it.each`
     ${'BTC'}               
     ${'ETH'}           
     ${'ETH_USDT'}        
-    ${'XRP'}                
+    ${'XLM'}                
 `('test get valid $coin address history', async ({coin}) => {
     const res = await client.getAddressHistory(coin);
     expect(res.success).toBeTruthy();
@@ -205,7 +205,7 @@ it.each`
 });
 
 test('test get transaction details', async () => {
-    const res = await client.getTransactionDetail(testData.tx_id);
+    const res = await client.getTransactionDetail(testData.cobo_id);
     expect(res.success).toBeTruthy();
 });
 
@@ -215,7 +215,7 @@ test('test get transactions by id', async () => {
 });
 
 test('test get transactions by txId', async () => {
-    const res = await client.getTransactionsByTxId("0x5d5396c3992ed524bf68a22a7ab6ae503f0349354ad69bc5204d5214085d4e9f");
+    const res = await client.getTransactionsByTxId(testData.tx_id);
     expect(res.success).toBeTruthy()
 });
 

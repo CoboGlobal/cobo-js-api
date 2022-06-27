@@ -4,7 +4,8 @@ export const SANDBOX = new Env("https://api.sandbox.cobo.com", "032f45930f652d72
 export const PROD = new Env("https://api.custody.cobo.com", "02c3e5bacf436fbf4da78597e791579f022a2e85073ae36c54a361ff97f2811376");
 
 export const SANDBOX_TEST_DATA : { [key: string]: any } = {
-    "tx_id":"20220314181458000331767000003732",
+    "cobo_id":"20220314181458000331767000003732",
+    "tx_id":"0x1c4d137bc2a2ee8f22cbdf9e90405974e72e65d922f42eb81d9f7a05d0f64fc6",
     "withdraw_id":"web_send_by_user_915_1647252768642",
     "deposit_address":{
         "BTC":"3JBYNrbB4bHtGWHTEa3ZPuRK9kwTiEUo4D",
@@ -24,7 +25,8 @@ export const SANDBOX_TEST_DATA : { [key: string]: any } = {
     }
 }
  export const PROD_TEST_DATA : { [key: string]: any } = {
-    "tx_id":"20220311154108000184408000002833",
+    "cobo_id":"20220311154108000184408000002833",
+    "tx_id":"4041A888C9966BE8916FE65F2FEE7AE9A9DC3F49D0F1643A768C842CA95FA736",
     "withdraw_id":"sdk_request_id_fe80cc5f_1647068483396",
     "deposit_address":{
         "BTC":"36xYx7vf7DUKpJDixpY3EoV2jchFwYSNCb",
