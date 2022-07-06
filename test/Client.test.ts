@@ -4,9 +4,9 @@ import {PROD} from "./config";
 import {SANDBOX_TEST_DATA} from "./config";
 import {PROD_TEST_DATA} from "./config";
 
-var apiSecret:string = 'apiSecret';
-var clientEnv:any = SANDBOX;
-var testData:any = SANDBOX_TEST_DATA
+var apiSecret = '265b4a0a2a764f6ab126244bde42bb02a4b79055c8ff69e8a658274470496ba4';
+var clientEnv = SANDBOX;
+var testData = SANDBOX_TEST_DATA
 
 if(process.argv.length > 3){
     const paramEnv = process.argv.filter((x) => x.startsWith('-env='))[0].split('=')[1];
@@ -165,6 +165,17 @@ it.each`
     const res = await client.getAddressHistory(coin);
     expect(res.success).toBeTruthy();
     expect(res.result.length).toBeGreaterThan(0);
+});
+
+it.each`
+    coin          | pageIndex   | pageLength
+    ${'BTC'}      | ${0}        | ${2}      
+`('test get valid $coin address history with page', async ({coin, pageIndex, pageLength}) => {
+    const res = await client.getAddressHistory(coin, pageIndex, pageLength);
+    expect(res.success).toBeTruthy();
+    expect(res.result.length).toBeGreaterThan(0);
+    console.log("coin:"+coin+",pageIndex:"+pageIndex+",pageLength:"+pageLength+",result.length:"+res.result.length)
+
 });
 
 it.each`
