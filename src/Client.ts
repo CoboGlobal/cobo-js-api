@@ -329,7 +329,6 @@ export class Client {
         }
         if (method == 'GET') {
             let url = this.host + path + '?' + sort_params;
-            console.log("get API url:"+url)
             response = await fetch(url, {
                 headers: headers,
                 method: "GET"
