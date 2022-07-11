@@ -179,12 +179,15 @@ it.each`
 });
 
 it.each`
-    coin                   
-    ${'BTTB'}                              
-`('test get invalid $coin address history', async ({coin}) => {
-    const res = await client.getAddressHistory(coin);
+    coin          | pageIndex   | pageLength
+    ${'BTC'}      | ${1}        | ${0}      
+    ${'BTC'}      | ${1}        | ${51}    
+`('test get invalid $coin address history with invalid page', async ({coin, pageIndex, pageLength}) => {
+    const res = await client.getAddressHistory(coin, pageIndex, pageLength);
+    console.log("coin:"+coin+",pageIndex:"+pageIndex+",pageLength:"+pageLength)
     expect(res.success).toBeFalsy();
-    expect(res.error_code).toEqual(12002);
+    expect(res.error_code).toEqual(1011);
+
 });
 
 it.each`
