@@ -113,13 +113,18 @@ export class Client {
     /***
      * get address history
      * @param coin: coin code
+     * @param pageIndex: which page. 0 is start page
+     * @param pageLength: page size
      */
-    getAddressHistory = (coin: string) => {
+    getAddressHistory = (coin: string, pageIndex=NaN, pageLength=NaN) => {
         let params: any = {
             "coin": coin,
+            "page_index": pageIndex,
+            "page_length": pageLength
         };
         return this.coboFetch("GET", "/v1/custody/address_history/", params);
     };
+
 
     /***
      * check loop address derails

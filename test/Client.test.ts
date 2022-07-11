@@ -168,6 +168,17 @@ it.each`
 });
 
 it.each`
+    coin          | pageIndex   | pageLength
+    ${'BTC'}      | ${0}        | ${2}      
+`('test get valid $coin address history with page', async ({coin, pageIndex, pageLength}) => {
+    const res = await client.getAddressHistory(coin, pageIndex, pageLength);
+    expect(res.success).toBeTruthy();
+    expect(res.result.length).toBeGreaterThan(0);
+    console.log("coin:"+coin+",pageIndex:"+pageIndex+",pageLength:"+pageLength+",result.length:"+res.result.length)
+
+});
+
+it.each`
     coin                   
     ${'BTTB'}                              
 `('test get invalid $coin address history', async ({coin}) => {
