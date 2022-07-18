@@ -115,7 +115,7 @@ export class Client {
      * get address history
      * @param coin: coin code
      * @param pageIndex: which page. 0 is start page
-     * @param pageLength: page size
+     * @param pageLength: page size <= 50
      * @param sortFlag: 0:DESCENDING 1:ASCENDING
      */
      getAddressHistory = (coin: string, pageIndex?: null, pageLength?: null, sortFlag?:null) => {
