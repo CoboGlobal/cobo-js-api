@@ -191,6 +191,17 @@ it.each`
 });
 
 it.each`
+    coin          | pageIndex   | pageLength   |sorfFlag
+    ${'BTC'}      | ${1}        | ${0}         |${0}
+`('test get $coin address history with page sort flag', async ({coin, pageIndex, pageLength, sortFlag}) => {
+    const res = await client.getAddressHistory(coin, pageIndex, pageLength, sortFlag);
+    console.log("coin:"+coin+",pageIndex:"+pageIndex+",pageLength:"+pageLength+",sortFlag:"+sortFlag)
+    expect(res.success).toBeFalsy();
+    expect(res.error_code).toEqual(1011);
+
+});
+
+it.each`
     coin          | memo           
     ${'BTC'}      | ${false}                   
     ${'XRP'}      | ${true}         
