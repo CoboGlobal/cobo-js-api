@@ -195,7 +195,7 @@ let res = await client.verifyValidAddress("ETH","0x05325e6f9d1f0437bd78a72c2ae08
 
 #### Get Address History List
 ```js
-const res = await client.getAddressHistory("ETH",0,50);
+const res = await client.getAddressHistory("ETH",0,50,0);
 ```
 <details>
 <summary>View Response</summary>
