@@ -4,6 +4,7 @@ import {LocalSigner} from "./LocalSigner";
 import {URLSearchParams} from "url"
 import {Env} from "./Env";
 import sha256 = require("sha256");
+import { ApiResponse } from '..';
 
 export class Client {
     private readonly apiKey: string;

@@ -4,7 +4,7 @@ import { LocalSigner } from "./LocalSigner";
 import { URLSearchParams } from "url"
 import { Env } from "./Env";
 import sha256 = require("sha256");
-import { ApiResponse } from './Base';
+import { ApiResponse } from '..';
 
 export class Web3Client {
     private readonly apiKey: string;
@@ -75,24 +75,24 @@ export class Web3Client {
         return this.coboFetch("GET", "/v1/custody/web3_list_wallet_address/", params)
     }
 
-    getWeb3WalletAssetList = (address?: null, chain_code?: null)=> {
+    getWeb3WalletAssetList = (address: string, chain_code: string)=> {
         let params: any = {}
-        if (address != null){
+        if (address != ''){
             params["address"] = address
         }
-        if (chain_code != null) {
+        if (chain_code != '') {
             params["chain_code"] = chain_code
         }
 
         return this.coboFetch("GET", "/v1/custody/web3_list_wallet_assets/", params)
     }
 
-    getWeb3WalletNftList = (nft_code: string, address?: null) => {
+    getWeb3WalletNftList = (nft_code: string, address: string) => {
         let params: any = {
             "nft_code": nft_code,
             "address": address,
         }
-        if (address != null) {
+        if (address != '') {
             params["address"] = address
         }
 
