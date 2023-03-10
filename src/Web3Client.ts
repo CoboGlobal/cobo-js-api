@@ -90,7 +90,6 @@ export class Web3Client {
     getWeb3WalletNftList = (nft_code: string, address: string) => {
         let params: any = {
             "nft_code": nft_code,
-            "address": address,
         }
         if (address != '') {
             params["address"] = address
