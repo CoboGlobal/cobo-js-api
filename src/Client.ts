@@ -4,6 +4,7 @@ import {LocalSigner} from "./LocalSigner";
 import {URLSearchParams} from "url"
 import {Env} from "./Env";
 import sha256 = require("sha256");
+import { ApiResponse } from '..';
 
 export class Client {
     private readonly apiKey: string;
@@ -409,11 +410,4 @@ export interface StakingQueryParams {
     max_id?: string,
     limit?: string,
     product_id?: string
-}
-
-export interface ApiResponse {
-    success: boolean,
-    result?: any,
-    error_code: number,
-    error_id: string
 }
