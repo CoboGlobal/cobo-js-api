@@ -94,6 +94,6 @@ test('test get web3 contract transaction', async () => {
 });
 
 test('test list web3 transaction', async () => {
-    const res = await web3_client.listWeb3WalletTransactions('0xd2176409a1ac767824921e45b7ee300745cb1e3f', null, null, null, 50);
+    const res = await web3_client.listWeb3WalletTransactions('0xd2176409a1ac767824921e45b7ee300745cb1e3f');
     expect(res.success).toBeTruthy();
 });

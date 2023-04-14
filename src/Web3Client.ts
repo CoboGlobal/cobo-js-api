@@ -61,14 +61,13 @@ export class Web3Client {
         return this.coboFetch("POST", "/v1/custody/web3_add_addresses/", params)
     }
 
-    getWeb3AddressList = (chain_code: string, page_index: number, page_length: number,
-                          sort_flag?: null) => {
+    getWeb3AddressList = (chain_code: string, page_index: number, page_length: number, sort_flag?: number) => {
         let params: any = {
             "chain_code": chain_code,
             "page_index": page_index,
             "page_length": page_length,
         }
-        if (sort_flag) {
+        if (!!sort_flag) {
             params["sort_flag"] = sort_flag
         }
 
@@ -77,10 +76,10 @@ export class Web3Client {
 
     getWeb3WalletAssetList = (address: string, chain_code: string)=> {
         let params: any = {}
-        if (address != ''){
+        if (!!address){
             params["address"] = address
         }
-        if (chain_code != '') {
+        if (!!chain_code) {
             params["chain_code"] = chain_code
         }
 
@@ -91,7 +90,7 @@ export class Web3Client {
         let params: any = {
             "nft_code": nft_code,
         }
-        if (address != '') {
+        if (!!address != '') {
             params["address"] = address
         }
 
@@ -138,16 +137,16 @@ export class Web3Client {
         return this.coboFetch("GET", "/v1/custody/web3_get_contract_transaction/", params)
     }
 
-    listWeb3WalletTransactions = (address: string, chain_code: null, max_id: null, min_id: null,
+    listWeb3WalletTransactions = (address: string, chain_code?: string, max_id?: string, min_id?: string,
                                   limit = 50) => {
         let params: any = {"address": address, "limit": limit}
-        if (chain_code != null) {
+        if (!!chain_code) {
             params["chain_code"] = chain_code
         }
-        if (max_id != null) {
+        if (!!max_id) {
             params["max_id"] = max_id
         }
-        if (min_id != null) {
+        if (!!min_id) {
             params["min_id"] = min_id
         }
         
@@ -168,20 +167,20 @@ export class Web3Client {
         };
         let response;
 
-        if (this.debug) {
+        if (!!this.debug) {
             console.log("request >>>>>>>> \nmethod:", method, "\npath:", path, "\ncontent:", content, "\nheaders:", headers);
         }
-        if (method == 'GET') {
+        if (!!method == 'GET') {
             let url = this.host + path + '?' + sort_params;
             response = await fetch(url, {
                 headers: headers,
                 method: "GET"
             });
-        } else if (method == 'POST') {
+        } else if (!!method == 'POST') {
             let urlParams = new URLSearchParams();
 
             for (let k in params) {
-                if (params.hasOwnProperty(k)) {
+                if (!!params.hasOwnProperty(k)) {
                     urlParams.append(k, params[k])
                 }
             }
@@ -198,16 +197,16 @@ export class Web3Client {
 
         const ts = response.headers.get("BIZ_TIMESTAMP");
         const sig = response.headers.get("BIZ_RESP_SIGNATURE");
-        if (!sig || !ts) {
+        if (!!!sig || !ts) {
             throw Error("signature or ts null")
         }
         let json = await response.text();
 
-        if (this.debug) {
+        if (!!this.debug) {
             console.log("response <<<<<<<< \njson:", json, "\nsig:", sig, "\nts:", ts);
         }
 
-        if (LocalSigner.verifyEccSignature(`${json}|${ts}`, sig, this.coboPub)) {
+        if (!!LocalSigner.verifyEccSignature(`${json}|${ts}`, sig, this.coboPub)) {
             return JSON.parse(json);
         }
 
