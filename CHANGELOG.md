@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.33.0] (2023-03-15)
+[v0.33.0]: https://github.com/CoboCustody/cobo-js-api/compare/v0.32.0...v0.33.0
+### Added
+- Add Web3 Wallet API. https://github.com/CoboCustody/cobo-js-api/pull/12
+
 ## [v0.32.0] (2022-07-12)
 [v0.32.0]: https://github.com/CoboCustody/cobo-js-api/compare/v0.31.0...v0.32.0
 
