@@ -74,16 +74,16 @@ export class MPCClient {
             "chain_code": chain_code,
         }
 
-        if (!!!!start_id) {
+        if (!!start_id) {
             params["start_id"] = start_id
         }
-        if (!!!!end_id) {
+        if (!!end_id) {
             params["end_id"] = end_id
         }
-        if (!!!!limit) {
+        if (!!limit) {
             params["limit"] = limit
         }
-        if (!!!!sort) {
+        if (!!sort) {
             params["sort"] = sort
         }
 
@@ -95,10 +95,10 @@ export class MPCClient {
             "address": address,
         }
 
-        if (!!!!chain_code) {
+        if (!!chain_code) {
             params["chain_code"] = chain_code
         }
-        if (!!!!coin) {
+        if (!!coin) {
             params["coin"] = coin
         }
 
@@ -151,7 +151,7 @@ export class MPCClient {
         if (!!to_address_details) {
             params["to_address_details"] = to_address_details
         }
-        if (!!!!fee) {
+        if (!!fee) {
             params["fee"] = fee
         }
         if (!!gas_price) {
@@ -346,7 +346,7 @@ export class MPCClient {
 
     coboFetch = async (method: string, path: string, params: any): Promise<ApiResponse> => {
         let nonce = String(new Date().getTime());
-        let sort_params: any = Object.keys(params).sort().map((k) => {
+        let sort_params = Object.keys(params).sort().map((k) => {
             return k + '=' + encodeURIComponent(params[k]).replace(/%20/g, "+");
         }).join('&');
         let content = [method, path, nonce, sort_params].join('|');
@@ -357,20 +357,20 @@ export class MPCClient {
         };
         let response;
 
-        if (!!this.debug) {
+        if (this.debug) {
             console.log("request >>>>>>>> \nmethod:", method, "\npath:", path, "\ncontent:", content, "\nheaders:", headers);
         }
-        if (!!method == 'GET') {
+        if (method == 'GET') {
             let url = this.host + path + '?' + sort_params;
             response = await fetch(url, {
                 headers: headers,
                 method: "GET"
             });
-        } else if (!!method == 'POST') {
+        } else if (method == 'POST') {
             let urlParams = new URLSearchParams();
 
             for (let k in params) {
-                if (!!params.hasOwnProperty(k)) {
+                if (params.hasOwnProperty(k)) {
                     urlParams.append(k, params[k])
                 }
             }
@@ -387,16 +387,16 @@ export class MPCClient {
 
         const ts = response.headers.get("BIZ_TIMESTAMP");
         const sig = response.headers.get("BIZ_RESP_SIGNATURE");
-        if (!!!sig || !ts) {
+        if (!sig || !ts) {
             throw Error("signature or ts null")
         }
         let json = await response.text();
 
-        if (!!this.debug) {
+        if (this.debug) {
             console.log("response <<<<<<<< \njson:", json, "\nsig:", sig, "\nts:", ts);
         }
 
-        if (!!LocalSigner.verifyEccSignature(`${json}|${ts}`, sig, this.coboPub)) {
+        if (LocalSigner.verifyEccSignature(`${json}|${ts}`, sig, this.coboPub)) {
             return JSON.parse(json);
         }
 
