@@ -11,7 +11,7 @@ if(process.argv.length > 3){
     const env = paramEnv ? paramEnv : 'sandbox';
     clientEnv = env==='prod' ? PROD: SANDBOX;
     const paramApiSecret = process.argv.filter((x) => x.startsWith('-mpcSecretKey='))[0].split('=')[1]
-    apiSecret = paramApiSecret ? paramApiSecret: 'apiSecret' 
+    apiSecret = paramApiSecret ? paramApiSecret: apiSecret
 }
 
 jest.setTimeout(10000);
