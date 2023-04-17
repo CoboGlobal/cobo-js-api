@@ -3,7 +3,7 @@ import {Web3Client} from "../src/Web3Client";
 import {SANDBOX} from "./config";
 import {PROD} from "./config";
 
-var apiSecret:string = 'apiSecret';
+var web3ApiSecret:string = 'apiSecret';
 var clientEnv:any = SANDBOX;
 
 if(process.argv.length > 3){
@@ -11,11 +11,11 @@ if(process.argv.length > 3){
     const env = paramEnv ? paramEnv : 'sandbox';
     clientEnv = env==='prod' ? PROD: SANDBOX;
     const paramApiSecret = process.argv.filter((x) => x.startsWith('-web3SecretKey='))[0].split('=')[1]
-    apiSecret = paramApiSecret ? paramApiSecret: 'apiSecret' 
+    web3ApiSecret = paramApiSecret ? paramApiSecret: web3ApiSecret
 }
 
 jest.setTimeout(10000);
-const signer = new LocalSigner(apiSecret);
+const signer = new LocalSigner(web3ApiSecret);
 const web3_client = new Web3Client(signer, clientEnv, false);
 
 test('test get web3 support chains', async () => {

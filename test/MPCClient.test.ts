@@ -3,7 +3,7 @@ import {MPCClient} from "../src/MPCClient";
 import {SANDBOX} from "./config";
 import {PROD} from "./config";
 
-var apiSecret:string = 'apiSecret';
+var mpcApiSecret:string = 'apiSecret';
 var clientEnv:any = SANDBOX;
 
 if(process.argv.length > 3){
@@ -11,11 +11,11 @@ if(process.argv.length > 3){
     const env = paramEnv ? paramEnv : 'sandbox';
     clientEnv = env==='prod' ? PROD: SANDBOX;
     const paramApiSecret = process.argv.filter((x) => x.startsWith('-mpcSecretKey='))[0].split('=')[1]
-    apiSecret = paramApiSecret ? paramApiSecret: 'apiSecret'
+    mpcApiSecret = paramApiSecret ? paramApiSecret: 'mpcApiSecret'
 }
 
 jest.setTimeout(10000);
-const signer = new LocalSigner(apiSecret);
+const signer = new LocalSigner(mpcApiSecret);
 const mpc_client = new MPCClient(signer, clientEnv, false);
 
 test('test get mpc support chains', async () => {
