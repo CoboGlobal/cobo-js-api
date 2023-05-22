@@ -135,7 +135,7 @@ export class MPCClient {
 
     CreateTransaction = (coin: string, request_id: string, amount: string, from_addr?: string, to_addr?: string,
         to_address_details?: string, fee?: string, gas_price?: BigInt, gas_limit?: BigInt, operation?: number,
-        extra_parameters?: string, max_fee?: BigInt, max_priority_fee?: BigInt) => {
+        extra_parameters?: string, max_fee?: BigInt, max_priority_fee?: BigInt, fee_amount?: BigInt) => {
         let params: any = {
             "coin": coin,
             "request_id": request_id,
@@ -171,6 +171,9 @@ export class MPCClient {
         }
         if (!!max_priority_fee) {
             params["max_priority_fee"] = max_priority_fee
+        }
+        if (!!fee_amount) {
+            params["fee_amount"] = fee_amount
         }
 
         return this.coboFetch("POST", "/v1/custody/mpc/create_transaction/", params)
