@@ -313,7 +313,9 @@ export class MPCClient {
         if (!!amount) {
             params["amount"] = amount
         }
-
+        if (!!address) {
+            params["address"] = address
+        }
         if (!!replace_cobo_id) {
             params["replace_cobo_id"] = replace_cobo_id
         }
