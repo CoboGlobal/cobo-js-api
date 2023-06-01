@@ -90,7 +90,7 @@ export class Web3Client {
         let params: any = {
             "nft_code": nft_code,
         }
-        if (!!address != '') {
+        if (!!address) {
             params["address"] = address
         }
 
@@ -170,13 +170,13 @@ export class Web3Client {
         if (!!this.debug) {
             console.log("request >>>>>>>> \nmethod:", method, "\npath:", path, "\ncontent:", content, "\nheaders:", headers);
         }
-        if (!!method == 'GET') {
+        if (method == 'GET') {
             let url = this.host + path + '?' + sort_params;
             response = await fetch(url, {
                 headers: headers,
                 method: "GET"
             });
-        } else if (!!method == 'POST') {
+        } else if (method == 'POST') {
             let urlParams = new URLSearchParams();
 
             for (let k in params) {
