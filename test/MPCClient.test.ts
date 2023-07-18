@@ -108,3 +108,10 @@ test('test list tss node requests', async () => {
     console.log(res.result);
     expect(res.success).toBeTruthy();
 });
+
+test('test list tss node', async () => {
+    const res = await mpc_client.ListTssNode();
+    console.log(res);
+    console.log(res.result);
+    expect(res.success).toBeTruthy();
+});
