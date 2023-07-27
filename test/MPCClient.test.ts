@@ -109,6 +109,20 @@ test('test list tss node requests', async () => {
     expect(res.success).toBeTruthy();
 });
 
+test('test get sign messages by requestIds', async () => {
+    const res = await mpc_client.TransactionsByRequestIds('1690349242683,1690268795963,1690187858862');
+    console.log(res);
+    console.log(res.result);
+    expect(res.success).toBeTruthy();
+});
+
+test('test get sign messages by coboIds', async () => {
+    const res = await mpc_client.TransactionsByCoboIds('20230726132723000341052000008222,20230725150636000308867000003494,20230725135301000361318000002480');
+    console.log(res);
+    console.log(res.result);
+    expect(res.success).toBeTruthy();
+});
+
 test('test list tss node', async () => {
     const res = await mpc_client.ListTssNode();
     console.log(res);
