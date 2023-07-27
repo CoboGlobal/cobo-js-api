@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.37.0] (2023-07-27)
+[v0.37.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.36.0...v0.37.0
+### Added
+- Add API to get result of API SignMessage. https://github.com/CoboGlobal/cobo-js-api/pull/29
+
 ## [v0.36.0] (2023-07-20)
 [v0.36.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.35.0...v0.36.0
 ### Added
