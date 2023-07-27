@@ -367,6 +367,10 @@ export class MPCClient {
         return this.coboFetch("GET", "/v1/custody/mpc/sign_messages_by_cobo_ids/", params)
     }
 
+    ListTssNode = () => {
+        return this.coboFetch("GET", "/v1/custody/mpc/list_tss_node/", {})
+    }
+
     coboFetch = async (method: string, path: string, params: any): Promise<ApiResponse> => {
         let nonce = String(new Date().getTime());
         let sort_params = Object.keys(params).sort().map((k) => {

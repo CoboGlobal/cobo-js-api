@@ -122,3 +122,10 @@ test('test get sign messages by coboIds', async () => {
     console.log(res.result);
     expect(res.success).toBeTruthy();
 });
+
+test('test list tss node', async () => {
+    const res = await mpc_client.ListTssNode();
+    console.log(res);
+    console.log(res.result);
+    expect(res.success).toBeTruthy();
+});
