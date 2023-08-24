@@ -5,10 +5,10 @@ on:
    inputs:
       environment:
         description: 'Environment to run tests against'
-        default: sandbox
+        default: develop
         type: choice
         options:
-          - sandbox
+          - develop
           - prod
   push:
    branches: [ main ]
@@ -24,8 +24,8 @@ jobs:
         run: yarn
       - name: run testcase
         env:
-            SECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODSECRET || secrets.SANDBOXSECRET}}"
-            ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'sandbox'}}"
+            SECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODSECRET || secrets.DEVELOPSECRET}}"
+            ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'develop'}}"
         run: |
           yarn build
           yarn test test/LocalSigner.test.ts

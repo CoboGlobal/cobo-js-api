@@ -1,10 +1,9 @@
 import {Env} from "../src/Env";
 
-export const SANDBOX = new Env("https://api.sandbox.cobo.com", "032f45930f652d72e0c90f71869dfe9af7d713b1f67dc2f7cb51f9572778b9c876");
 export const PROD = new Env("https://api.custody.cobo.com", "02c3e5bacf436fbf4da78597e791579f022a2e85073ae36c54a361ff97f2811376");
 export const DEVELOP = new Env("https://api.develop.cobo.com", "03596da539963fb1dd29d5859e25903eb76b9f7ed2d58516e29c9f80c201ff2c1b");
 
-export const SANDBOX_TEST_DATA : { [key: string]: any } = {
+export const DEVELOP_TEST_DATA : { [key: string]: any } = {
     "cobo_id":"20220314181458000331767000003732",
     "tx_id":"0x1c4d137bc2a2ee8f22cbdf9e90405974e72e65d922f42eb81d9f7a05d0f64fc6",
     "withdraw_id":"web_send_by_user_915_1647252768642",

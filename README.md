@@ -59,7 +59,7 @@ add dependency in `package.json`
 
 ```
 yarn build
-yarn test -env=sandbox/prod -secretKey=<yourApiSecret>
+yarn test -env=develop/prod -secretKey=<yourApiSecret>
 ```
 
 ## Usage
@@ -82,8 +82,8 @@ Please refer to the [link](https://doc.custody.cobo.com/en.html#api-authenticati
 ```js
 const { Client } = require('cobo-custody');
 const { LocalSigner } = require('cobo-custody');
-const {SANDBOX,PROD} = require('cobo-custody');
-const client = new Client(API_SIGNER, SANDBOX, true)
+const {DEVELOP,PROD} = require('cobo-custody');
+const client = new Client(API_SIGNER, DEVELOP, true)
 ```
 
 

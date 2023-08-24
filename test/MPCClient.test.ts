@@ -1,15 +1,15 @@
 import {LocalSigner} from "../src/LocalSigner";
 import {MPCClient} from "../src/MPCClient";
-import {SANDBOX} from "./config";
+import {DEVELOP} from "./config";
 import {PROD} from "./config";
 
 var mpcApiSecret:string = 'apiSecret';
-var clientEnv:any = SANDBOX;
+var clientEnv:any = DEVELOP;
 
 if(process.argv.length > 3){
     const paramEnv = process.argv.filter((x) => x.startsWith('-env='))[0].split('=')[1];
-    const env = paramEnv ? paramEnv : 'sandbox';
-    clientEnv = env==='prod' ? PROD: SANDBOX;
+    const env = paramEnv ? paramEnv : 'develop';
+    clientEnv = env==='prod' ? PROD: DEVELOP;
     const paramApiSecret = process.argv.filter((x) => x.startsWith('-mpcSecretKey='))[0].split('=')[1]
     mpcApiSecret = paramApiSecret ? paramApiSecret: 'mpcApiSecret'
 }

@@ -16,7 +16,7 @@ export class Web3Client {
     /***
      *
      * @param signer api signer
-     * @param env SANDBOX or PROD
+     * @param env DEVELOP or PROD
      * @param debug
      */
     constructor(signer: Signer, env: Env, debug: boolean = false) {
