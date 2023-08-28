@@ -1,20 +1,20 @@
 import {Client, LocalSigner} from "..";
-import {SANDBOX} from "./config";
+import {DEVELOP} from "./config";
 import {PROD} from "./config";
-import {SANDBOX_TEST_DATA} from "./config";
+import {DEVELOP_TEST_DATA} from "./config";
 import {PROD_TEST_DATA} from "./config";
 
 var apiSecret:string = 'apiSecret';
-var clientEnv:any = SANDBOX;
-var testData:any = SANDBOX_TEST_DATA
+var clientEnv:any = DEVELOP;
+var testData:any = DEVELOP_TEST_DATA
 
 if(process.argv.length > 3){
     const paramEnv = process.argv.filter((x) => x.startsWith('-env='))[0].split('=')[1];
-    const env = paramEnv ? paramEnv : 'sandbox';
-    clientEnv = env==='prod' ? PROD: SANDBOX;
+    const env = paramEnv ? paramEnv : 'develop';
+    clientEnv = env==='prod' ? PROD: DEVELOP;
     const paramApiSecret = process.argv.filter((x) => x.startsWith('-secretKey='))[0].split('=')[1]
     apiSecret = paramApiSecret ? paramApiSecret: 'apiSecret' 
-    testData = env==='prod' ? PROD_TEST_DATA: SANDBOX_TEST_DATA;
+    testData = env==='prod' ? PROD_TEST_DATA: DEVELOP_TEST_DATA;
 }
 
 jest.setTimeout(10000);

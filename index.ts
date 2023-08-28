@@ -3,10 +3,10 @@ import {LocalSigner} from "./src/LocalSigner";
 import {Web3Client} from "./src/Web3Client";
 import {MPCClient} from "./src/MPCClient";
 
-import {PROD, SANDBOX, DEVELOP} from "./src/Env";
+import {PROD, DEVELOP} from "./src/Env";
 import { ApiResponse } from "./src/Base";
 
-export {SANDBOX, PROD, DEVELOP}
+export {PROD, DEVELOP}
 
 export {Client, LocalSigner, Web3Client, MPCClient};
 export {
