@@ -402,6 +402,7 @@ export interface WithdrawParams {
     memo?: string,
     force_internal?: string,
     for_external?: string,
+    remark?: string
 }
 
 export interface StakingQueryParams {
