@@ -54,6 +54,11 @@ test('test generate address', async () => {
     expect(res.success).toBeTruthy();
 });
 
+test('test update address description', async () => {
+    const res = await mpc_client.UpdateAddressDescription('GETH', '0xc3378d6ae0b5d20cddb46138e051de48b143c161', 'test1');
+    expect(res.success).toBeTruthy();
+});
+
 test('test list address', async () => {
     const res = await mpc_client.ListAddresses('GETH');
     expect(res.success).toBeTruthy();

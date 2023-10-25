@@ -69,6 +69,15 @@ export class MPCClient {
         return this.coboFetch("POST", "/v1/custody/mpc/generate_addresses/", params)
     }
 
+    UpdateAddressDescription = (coin: string, address: string, description: string) => {
+        let params: any = {
+            "coin": coin,
+            "address": address,
+            "description": description
+        }
+        return this.coboFetch("POST", "/v1/custody/mpc/update_address_description/", params)
+    }
+
     ListAddresses = (chain_code: string, start_id?: string, end_id?: string, limit?: number, sort?: number) => {
         let params: any = {
             "chain_code": chain_code,
