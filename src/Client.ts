@@ -16,7 +16,7 @@ export class Client {
     /***
      *
      * @param signer api signer
-     * @param env DEVELOP or PROD
+     * @param env DEV or PROD
      * @param debug
      */
     constructor(signer: Signer, env: Env, debug: boolean = false) {
