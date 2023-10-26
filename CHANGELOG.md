@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [v0.38.0] (2023-10-26)
 [v0.38.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.37.0...v0.38.0
+### Added
+- Add New API: MPC Wallet add Update Address Description API.https://github.com/CoboGlobal/cobo-js-api/pull/34
 ### Changed
 - Add New Params: Custodial Wallet New Withdraw Request and MPC Wallet Create Transaction API add remark param. https://github.com/CoboGlobal/cobo-js-api/pull/32
 
