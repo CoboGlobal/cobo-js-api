@@ -1,15 +1,15 @@
 import {LocalSigner} from "../src/LocalSigner";
 import {Web3Client} from "../src/Web3Client";
-import {DEVELOP} from "./config";
+import {DEV} from "./config";
 import {PROD} from "./config";
 
 var web3ApiSecret:string = 'apiSecret';
-var clientEnv:any = DEVELOP;
+var clientEnv:any = DEV;
 
 if(process.argv.length > 3){
     const paramEnv = process.argv.filter((x) => x.startsWith('-env='))[0].split('=')[1];
     const env = paramEnv ? paramEnv : 'develop';
-    clientEnv = env==='prod' ? PROD: DEVELOP;
+    clientEnv = env==='prod' ? PROD: DEV;
     const paramApiSecret = process.argv.filter((x) => x.startsWith('-web3SecretKey='))[0].split('=')[1]
     web3ApiSecret = paramApiSecret ? paramApiSecret: web3ApiSecret
 }
