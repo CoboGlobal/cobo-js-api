@@ -1,15 +1,15 @@
 import {LocalSigner} from "../src/LocalSigner";
 import {MPCClient} from "../src/MPCClient";
-import {DEVELOP} from "./config";
+import {DEV} from "./config";
 import {PROD} from "./config";
 
 var mpcApiSecret:string = 'apiSecret';
-var clientEnv:any = DEVELOP;
+var clientEnv:any = DEV;
 
 if(process.argv.length > 3){
     const paramEnv = process.argv.filter((x) => x.startsWith('-env='))[0].split('=')[1];
     const env = paramEnv ? paramEnv : 'develop';
-    clientEnv = env==='prod' ? PROD: DEVELOP;
+    clientEnv = env==='prod' ? PROD: DEV;
     const paramApiSecret = process.argv.filter((x) => x.startsWith('-mpcSecretKey='))[0].split('=')[1]
     mpcApiSecret = paramApiSecret ? paramApiSecret: 'mpcApiSecret'
 }

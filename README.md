@@ -50,7 +50,7 @@ add dependency in `package.json`
 ```
   "dependencies": {
      ...
-    "cobo-custody": "https://github.com/CoboGlobal/cobo-js-api/releases/download/v0.37.0/release.tgz"
+    "cobo-custody": "https://github.com/CoboGlobal/cobo-js-api/releases/download/v0.38.0/release.tgz"
   }
 ```
 
@@ -82,8 +82,8 @@ Please refer to the [link](https://doc.custody.cobo.com/en.html#api-authenticati
 ```js
 const { Client } = require('cobo-custody');
 const { LocalSigner } = require('cobo-custody');
-const {DEVELOP,PROD} = require('cobo-custody');
-const client = new Client(API_SIGNER, DEVELOP, true)
+const {DEV,PROD} = require('cobo-custody');
+const client = new Client(API_SIGNER, DEV, true)
 ```
 
 
