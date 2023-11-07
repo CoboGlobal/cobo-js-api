@@ -202,6 +202,14 @@ export class Client {
     };
 
     /***
+     * get transaction by time ex
+     * @param params : TransactionQueryParamsEx
+     */
+    getTransactionsByTimeEx = (params: TransactionQueryParamsEx) => {
+        return this.coboFetch("GET", "/v1/custody/transactions_by_time_ex/", params);
+    };
+
+    /***
      * get pending transactions
      * @param params : TransactionQueryParams
      */
@@ -392,6 +400,19 @@ export interface TransactionQueryParams {
     end_time?: string,
     max_id?: string,
     min_id?: string,
+}
+
+export interface TransactionQueryParamsEx {
+    coins?: string,
+    side?: number,
+    status?: number,
+    address?: string,
+    limit?: number,
+    offset?: number,
+    begin_time?: string,
+    end_time?: string,
+    order_by?: string,
+    order?: string,
 }
 
 export interface WithdrawParams {
