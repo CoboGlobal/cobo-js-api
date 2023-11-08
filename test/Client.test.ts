@@ -251,6 +251,11 @@ test('test get transactions by time', async () => {
     expect(res.success).toBeTruthy();
 });
 
+test('test get transactions by time ex', async () => {
+    const res = await client.getTransactionsByTimeEx({});
+    expect(res.success).toBeTruthy();
+});
+
 test('test get pending transactions', async () => {
     const res = await client.getPendingTransactions({});
     expect(res.success).toBeTruthy();
