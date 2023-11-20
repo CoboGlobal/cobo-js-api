@@ -47,7 +47,7 @@ export class MPCPrimeBrokerClient {
         return this.coboFetch("POST", "/v1/custody/auth/bind_addresses/", params)
     }
 
-    ChangeAddresses = (user_id: string) => {
+    ChangeBinding = (user_id: string) => {
         let params: any = {"user_id": user_id}
         return this.coboFetch("POST", "/v1/custody/auth/change_binding/", params)
     }
