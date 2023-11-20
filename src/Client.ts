@@ -43,6 +43,14 @@ export class Client {
     };
 
     /***
+     * get supported coins
+     * @param coin :coin code
+     */
+    getSupportedCoins = () => {
+        return this.coboFetch("GET", "/v1/custody/get_supported_coins/", {});
+    };
+
+    /***
      * new deposit address
      * @param coin: coin code
      * @param nativeSegwit: new segwit address
@@ -194,6 +202,14 @@ export class Client {
     };
 
     /***
+     * get transaction by request ids
+     * @param params : TransactionQueryParams
+     */
+    getTransactionsByRequestId = (requestIds: string) => {
+        return this.coboFetch("GET", "/v1/custody/transactions_by_id/", {"request_ids": requestIds});
+    };
+
+    /***
      * get transaction by time
      * @param params : TransactionQueryParams
      */
@@ -223,6 +239,14 @@ export class Client {
      */
     getPendingDepositDetails = (id: string) => {
         return this.coboFetch("GET", "/v1/custody/pending_transaction/", {"id": id});
+    };
+
+       /***
+     * get transaction history
+     * @param params : TransactionHistoryQueryParamsEx
+     */
+    getTransactionHistory = (params: TransactionHistoryQueryParamsEx) => {
+        return this.coboFetch("GET", "/v1/custody/transaction_history/", params);
     };
 
     /***
@@ -432,4 +456,16 @@ export interface StakingQueryParams {
     max_id?: string,
     limit?: string,
     product_id?: string
+}
+
+export interface TransactionHistoryQueryParamsEx {
+    coin?: string,
+    side?: number,
+    address?: string,
+    max_id?: string,
+    min_id?: string,
+    limit?: number,
+    begin_time?: string,
+    end_time?: string,
+    include_financial?: string,
 }
