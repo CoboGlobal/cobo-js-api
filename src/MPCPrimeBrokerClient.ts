@@ -29,37 +29,37 @@ export class MPCPrimeBrokerClient {
     
     CreateBinding = (user_id: string) => {
         let params: any = {"user_id": user_id}
-        return this.coboFetch("POST", "/v1/custody/auth/create_binding/", params)
+        return this.coboFetch("POST", "/v1/custody/guards/create_binding/", params)
     }
 
     QueryBinding = (binder_id: string) => {
         let params: any = {"binder_id": binder_id}
-        return this.coboFetch("GET", "/v1/custody/auth/query_binding/", params)
+        return this.coboFetch("GET", "/v1/custody/guards/query_binding/", params)
     }
 
     QueryUserAuth = (user_id: string) => {
         let params: any = {"user_id": user_id}
-        return this.coboFetch("GET", "/v1/custody/auth/query_user_auth/", params)
+        return this.coboFetch("GET", "/v1/custody/guards/query_user_auth/", params)
     }
 
     BindAddresses = (user_id: string, addresses: string) => {
         let params: any = {"user_id": user_id, "addresses": addresses}
-        return this.coboFetch("POST", "/v1/custody/auth/bind_addresses/", params)
+        return this.coboFetch("POST", "/v1/custody/guards/bind_addresses/", params)
     }
 
     ChangeBinding = (user_id: string) => {
         let params: any = {"user_id": user_id}
-        return this.coboFetch("POST", "/v1/custody/auth/change_binding/", params)
+        return this.coboFetch("POST", "/v1/custody/guards/change_binding/", params)
     }
     
     UnbindBinding = (user_id: string) => {
         let params: any = {"user_id": user_id}
-        return this.coboFetch("POST", "/v1/custody/auth/unbind_binding/", params)
+        return this.coboFetch("POST", "/v1/custody/guards/unbind_binding/", params)
     }
 
     QueryStatement = (statement_id: string) => {
         let params: any = {"statement_id": statement_id}
-        return this.coboFetch("GET", "/v1/custody/auth/query_statement/", params)
+        return this.coboFetch("GET", "/v1/custody/guards/query_statement/", params)
     }
 
     coboFetch = async (method: string, path: string, params: any): Promise<ApiResponse> => {
