@@ -3,10 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+## [v0.40.0] (2023-11-22)
+[v0.40.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.39.0...v0.40.0
+### Added
+- Add API for Primer Broker to facilitate MPC wallet integration with Cobo Guard. https://github.com/CoboGlobal/cobo-js-api/pull/37
+
 ## [v0.39.0] (2023-11-08)
 [v0.39.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.38.0...v0.39.0
 ### Added
-- Add New API: Add transactions_by_time_ex API for Custody Wallet.https://github.com/CoboGlobal/cobo-js-api/pull/35
+- Add New API: Add transactions_by_time_ex API for Custody Wallet. https://github.com/CoboGlobal/cobo-js-api/pull/35
 
 ## [v0.38.0] (2023-10-26)
 [v0.38.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.37.0...v0.38.0
