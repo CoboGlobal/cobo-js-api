@@ -447,4 +447,18 @@ export class MPCClient {
 
         throw Error("signature verify failed!!!")
     }
+
+    GetMaxSendAmount = (coin: string, fee_rate: string, to_address: string, from_address?: string,) => {
+        let params: any = {
+            "coin": coin,
+            "fee_rate": fee_rate,
+            "to_address": to_address,
+        }
+
+        if (!!from_address) {
+            params["from_address"] = from_address
+        }
+
+        return this.coboFetch("GET", "/v1/custody/mpc/get_max_send_amount/", params)
+    }
 }
