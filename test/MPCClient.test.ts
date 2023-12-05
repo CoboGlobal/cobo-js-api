@@ -134,3 +134,10 @@ test('test list tss node', async () => {
     console.log(res.result);
     expect(res.success).toBeTruthy();
 });
+
+test('test get max send amount', async () => {
+    const res = await mpc_client.GetMaxSendAmount("GET", "0", "")
+    console.log(res);
+    console.log(res.result);
+    expect(res.success).toBeTruthy();
+});
