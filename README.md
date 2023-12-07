@@ -35,7 +35,7 @@ add dependency in package.json
 ```json
 {
   "dependencies": {
-    "cobo-custody": "https://github.com/CoboGlobal/cobo-js-api/releases/download/v0.40.0/release.tgz"
+    "cobo-custody": "https://github.com/CoboGlobal/cobo-js-api/releases/download/v0.41.0/release.tgz"
   }
 }
 ```
