@@ -431,6 +431,7 @@ export interface TransactionQueryParamsEx {
     side?: number,
     status?: number,
     address?: string,
+    txid?: string,
     limit?: number,
     offset?: number,
     begin_time?: string,
