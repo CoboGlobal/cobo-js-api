@@ -25,9 +25,11 @@ jobs:
       - name: run testcase
         env:
             SECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODSECRET || secrets.DEVELOPSECRET}}"
+            MPCSECRET: "${{ github.event.inputs.environment == 'prod' && secrets.PRODMPCSECRET || secrets.DEVELOPMPCSECRET}}"
             ENV: "${{ github.event.inputs.environment == 'prod' && 'prod' || 'develop'}}"
         run: |
           yarn build
           yarn test test/LocalSigner.test.ts
           yarn test test/Client.test.ts -env=$ENV -secretKey=$SECRET
+          yarn test test/MPCClient.test.ts -env=$ENV -MPCSecretKey=$MPCSECRET
         
