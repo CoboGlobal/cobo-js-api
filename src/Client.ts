@@ -38,8 +38,12 @@ export class Client {
      * get coin info
      * @param coin :coin code
      */
-    getCoinInfo = (coin: string) => {
-        return this.coboFetch("GET", "/v1/custody/coin_info/", {"coin": coin});
+    getCoinInfo = (coin: string, amount?: null) => {
+        let params: any = {"coin": coin};
+        if (amount != null) {
+            params["amount"] = amount;
+        }
+        return this.coboFetch("GET", "/v1/custody/coin_info/", params);
     };
 
     /***
