@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.42.0] (2023-12-21)
+[v0.42.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.41.0...v0.42.0
+### Added
+- Add New Params: Add parameter `amount` for API coin_info for Custodial Wallet. https://github.com/CoboGlobal/cobo-js-api/pull/44
+
 ## [v0.41.0] (2023-12-07)
 [v0.41.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.40.0...v0.41.0
 ### Added
