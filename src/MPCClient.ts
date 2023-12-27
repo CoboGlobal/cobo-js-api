@@ -401,6 +401,24 @@ export class MPCClient {
         return this.coboFetch("POST", "/v1/custody/mpc/retry_double_check/", params)
     }
 
+    LockSpendable = (coin: string, tx_hash: string, vout_n: string) => {
+        let params: any = { "coin": coin, "tx_hash": tx_hash, "vout_n": vout_n }
+
+        return this.coboFetch("POST", "/v1/custody/mpc/lock_spendable/", params)
+    }
+
+    UnlockSpendable = (coin: string, tx_hash: string, vout_n: string) => {
+        let params: any = { "coin": coin, "tx_hash": tx_hash, "vout_n": vout_n }
+
+        return this.coboFetch("POST", "/v1/custody/mpc/unlock_spendable/", params)
+    }
+
+    GetRareSatoshis = (coin: string, tx_hash: string, vout_n: string) => {
+        let params: any = { "coin": coin, "tx_hash": tx_hash, "vout_n": vout_n }
+
+        return this.coboFetch("GET", "/v1/custody/mpc/get_rare_satoshis/", params)
+    }
+
     coboFetch = async (method: string, path: string, params: any): Promise<ApiResponse> => {
         let nonce = String(new Date().getTime());
         let sort_params = Object.keys(params).sort().map((k) => {
