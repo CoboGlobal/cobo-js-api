@@ -69,6 +69,15 @@ export class MPCClient {
         return this.coboFetch("POST", "/v1/custody/mpc/generate_addresses/", params)
     }
 
+    GenerateAddressMemo = (chain_code: string, address: string, count: number) => {
+        let params: any = {
+            "chain_code": chain_code,
+            "address": address,
+            "count": count,
+        }
+        return this.coboFetch("POST", "/v1/custody/mpc/generate_address_memo/", params)
+    }
+
     UpdateAddressDescription = (coin: string, address: string, description: string) => {
         let params: any = {
             "coin": coin,
@@ -145,7 +154,7 @@ export class MPCClient {
     CreateTransaction = (coin: string, request_id: string, amount: string, from_addr?: string, to_addr?: string,
         to_address_details?: string, fee?: string, gas_price?: BigInt, gas_limit?: BigInt, operation?: number,
         extra_parameters?: string, max_fee?: BigInt, max_priority_fee?: BigInt, fee_amount?: BigInt, remark?: string,
-        auto_fuel?: number) => {
+        auto_fuel?: number, memo?: string) => {
         let params: any = {
             "coin": coin,
             "request_id": request_id,
@@ -190,6 +199,9 @@ export class MPCClient {
         }
         if (!!auto_fuel) {
             params["auto_fuel"] = auto_fuel
+        }
+        if (!!memo) {
+            params["memo"] = memo
         }
 
         return this.coboFetch("POST", "/v1/custody/mpc/create_transaction/", params)
