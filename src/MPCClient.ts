@@ -69,6 +69,15 @@ export class MPCClient {
         return this.coboFetch("POST", "/v1/custody/mpc/generate_addresses/", params)
     }
 
+    GenerateAddressMemo = (chain_code: string, address: string, count: number) => {
+        let params: any = {
+            "chain_code": chain_code,
+            "address": address,
+            "count": count,
+        }
+        return this.coboFetch("POST", "/v1/custody/mpc/generate_address_memo/", params)
+    }
+
     UpdateAddressDescription = (coin: string, address: string, description: string) => {
         let params: any = {
             "coin": coin,
@@ -145,7 +154,7 @@ export class MPCClient {
     CreateTransaction = (coin: string, request_id: string, amount: string, from_addr?: string, to_addr?: string,
         to_address_details?: string, fee?: string, gas_price?: BigInt, gas_limit?: BigInt, operation?: number,
         extra_parameters?: string, max_fee?: BigInt, max_priority_fee?: BigInt, fee_amount?: BigInt, remark?: string,
-        auto_fuel?: number) => {
+        auto_fuel?: number, memo?: string) => {
         let params: any = {
             "coin": coin,
             "request_id": request_id,
@@ -190,6 +199,9 @@ export class MPCClient {
         }
         if (!!auto_fuel) {
             params["auto_fuel"] = auto_fuel
+        }
+        if (!!memo) {
+            params["memo"] = memo
         }
 
         return this.coboFetch("POST", "/v1/custody/mpc/create_transaction/", params)
@@ -399,6 +411,24 @@ export class MPCClient {
         let params: any = {"request_id": request_id}
 
         return this.coboFetch("POST", "/v1/custody/mpc/retry_double_check/", params)
+    }
+
+    LockSpendable = (coin: string, tx_hash: string, vout_n: number) => {
+        let params: any = { "coin": coin, "tx_hash": tx_hash, "vout_n": vout_n }
+
+        return this.coboFetch("POST", "/v1/custody/mpc/lock_spendable/", params)
+    }
+
+    UnlockSpendable = (coin: string, tx_hash: string, vout_n: number) => {
+        let params: any = { "coin": coin, "tx_hash": tx_hash, "vout_n": vout_n }
+
+        return this.coboFetch("POST", "/v1/custody/mpc/unlock_spendable/", params)
+    }
+
+    GetRareSatoshis = (coin: string, tx_hash: string, vout_n: number) => {
+        let params: any = { "coin": coin, "tx_hash": tx_hash, "vout_n": vout_n }
+
+        return this.coboFetch("GET", "/v1/custody/mpc/get_rare_satoshis/", params)
     }
 
     coboFetch = async (method: string, path: string, params: any): Promise<ApiResponse> => {
