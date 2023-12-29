@@ -3,6 +3,8 @@ import {Env} from "../src/Env";
 export const PROD = new Env("https://api.custody.cobo.com", "02c3e5bacf436fbf4da78597e791579f022a2e85073ae36c54a361ff97f2811376");
 export const DEV = new Env("https://api.dev.cobo.com", "03596da539963fb1dd29d5859e25903eb76b9f7ed2d58516e29c9f80c201ff2c1b");
 
+export const SANDBOX = new Env("https://api.sandbox.cobo.com", "032f45930f652d72e0c90f71869dfe9af7d713b1f67dc2f7cb51f9572778b9c876");
+
 export const DEV_TEST_DATA : { [key: string]: any } = {
     "cobo_id":"20231213152104000114035000006167",
     "tx_id":"332d0377c0cc08bc9f9d5b07320add949e30d8da0b5fea5140de63e3779101a0",
