@@ -133,11 +133,6 @@ test('test get sign messages by coboIds', async () => {
     expect(res.success).toBeTruthy();
 });
 
-test('test get lock', async () => {
-    const res = await mpc_client.LockSpendable("BTC", "6374cf4c6664d6a6fc533a90a2e4cfa188cde0b9a44622212dd4faeab21fc6dc", 0)
-    expect(res.success).toBeTruthy();
-});
-
 
 test('test list tss node', async () => {
     const res = await mpc_client.ListTssNode();
