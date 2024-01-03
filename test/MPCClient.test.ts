@@ -41,6 +41,11 @@ test('test get mpc walelt support coins', async () => {
     expect(res.success).toBeTruthy();
 });
 
+test('test get coin info', async () => {
+    const res = await mpc_client.getCoinInfo('GETH');
+    expect(res.success).toBeTruthy();
+});
+
 test('test is valid address', async () => {
     const res = await mpc_client.IsValidAddress('GETH', '0x3ede1e59a3f3a66de4260df7ba3029b515337e5c');
     expect(res.success).toBeTruthy();
@@ -132,6 +137,7 @@ test('test get sign messages by coboIds', async () => {
     // console.log(res.result);
     expect(res.success).toBeTruthy();
 });
+
 
 test('test list tss node', async () => {
     const res = await mpc_client.ListTssNode();

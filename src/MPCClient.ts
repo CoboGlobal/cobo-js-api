@@ -48,6 +48,10 @@ export class MPCClient {
         return this.coboFetch("GET", "/v1/custody/mpc/get_wallet_supported_coins/", params)
     }
 
+    getCoinInfo = (coin: string) => {
+        let params: any = {"coin": coin};
+        return this.coboFetch("GET", "/v1/custody/mpc/coin_info/", params);
+    };
 
     IsValidAddress = (coin: string, address: string) => {
         let params: any = { "coin": coin, "address": address }
@@ -431,6 +435,20 @@ export class MPCClient {
         return this.coboFetch("GET", "/v1/custody/mpc/get_rare_satoshis/", params)
     }
 
+    GetMaxSendAmount = (coin: string, fee_rate: string, to_address: string, from_address?: string,) => {
+        let params: any = {
+            "coin": coin,
+            "fee_rate": fee_rate,
+            "to_address": to_address,
+        }
+
+        if (!!from_address) {
+            params["from_address"] = from_address
+        }
+
+        return this.coboFetch("GET", "/v1/custody/mpc/get_max_send_amount/", params)
+    }
+    
     coboFetch = async (method: string, path: string, params: any): Promise<ApiResponse> => {
         let nonce = String(new Date().getTime());
         let sort_params = Object.keys(params).sort().map((k) => {
@@ -488,19 +506,5 @@ export class MPCClient {
         }
 
         throw Error("signature verify failed!!!")
-    }
-
-    GetMaxSendAmount = (coin: string, fee_rate: string, to_address: string, from_address?: string,) => {
-        let params: any = {
-            "coin": coin,
-            "fee_rate": fee_rate,
-            "to_address": to_address,
-        }
-
-        if (!!from_address) {
-            params["from_address"] = from_address
-        }
-
-        return this.coboFetch("GET", "/v1/custody/mpc/get_max_send_amount/", params)
     }
 }
