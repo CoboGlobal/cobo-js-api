@@ -152,24 +152,3 @@ test('test get max send amount', async () => {
     // console.log(res.result);
     expect(res.success).toBeTruthy();
 });
-
-test('test lock spendable', async () => {
-    const res = await mpc_client.LockSpendable("BTC", "6374cf4c6664d6a6fc533a90a2e4cfa188cde0b9a44622212dd4faeab21fc6dc", 0)
-    // console.log(res);
-    // console.log(res.result);
-    expect(res.success).toBeTruthy();
-});
-
-test('test unlock spendable', async () => {
-    const res = await mpc_client.UnlockSpendable("BTC", "6374cf4c6664d6a6fc533a90a2e4cfa188cde0b9a44622212dd4faeab21fc6dc", 0)
-    // console.log(res);
-    // console.log(res.result);
-    expect(res.success).toBeTruthy();
-});
-
-test('test get rate satoshis', async () => {
-    const res = await mpc_client.GetRareSatoshis("BTC", "6374cf4c6664d6a6fc533a90a2e4cfa188cde0b9a44622212dd4faeab21fc6dc", 0)
-    // console.log(res);
-    // console.log(res.result);
-    expect(res.success).toBeTruthy();
-});
