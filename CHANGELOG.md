@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.45.0] (2024-01-04)
+[v0.45.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.44.0...v0.45.0
+### Added
+- Add New API: Add get_coin_info API for MPC Wallet. https://github.com/CoboGlobal/cobo-js-api/pull/52
+
 ## [v0.44.0] (2023-12-28)
 [v0.44.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.43.0...v0.44.0
 ### Added
