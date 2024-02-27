@@ -225,7 +225,7 @@ export class MPCClient {
     }
 
     DropTransaction = (cobo_id: string, request_id: string, gas_price?: BigInt, gas_limit?: BigInt, 
-        fee?: string, fee_amount?: BigInt, auto_fuel?: number) => {
+        fee?: string, fee_amount?: BigInt, auto_fuel?: number, extra_parameters?: string) => {
         let params: any = {
             "cobo_id": cobo_id,
             "request_id": request_id,
@@ -245,13 +245,16 @@ export class MPCClient {
         }
         if (!!auto_fuel) {
             params["auto_fuel"] = auto_fuel
+        }
+        if (!!extra_parameters) {
+            params["extra_parameters"] = extra_parameters
         }
 
         return this.coboFetch("POST", "/v1/custody/mpc/drop_transaction/", params)
     }
 
     SpeedupTransaction = (cobo_id: string, request_id: string, gas_price?: BigInt, gas_limit?: BigInt, 
-        fee?: string, fee_amount?: BigInt, auto_fuel?: number) => {
+        fee?: string, fee_amount?: BigInt, auto_fuel?: number, extra_parameters?: string) => {
         let params: any = {
             "cobo_id": cobo_id,
             "request_id": request_id,
@@ -271,6 +274,9 @@ export class MPCClient {
         }
         if (!!auto_fuel) {
             params["auto_fuel"] = auto_fuel
+        }
+        if (!!extra_parameters) {
+            params["extra_parameters"] = extra_parameters
         }
 
         return this.coboFetch("POST", "/v1/custody/mpc/speedup_transaction/", params)
