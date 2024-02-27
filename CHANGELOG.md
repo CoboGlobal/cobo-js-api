@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.46.0] (2024-02-28)
+[v0.46.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.45.0...v0.46.0
+### Added
+- Add New Params: Add new parameter 'extra_parameters' for API mpc_speedup_transaction and mpc_drop_transaction. https://github.com/CoboGlobal/cobo-js-api/pull/59
+
 ## [v0.45.0] (2024-01-04)
 [v0.45.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.44.0...v0.45.0
 ### Added
