@@ -441,6 +441,18 @@ export class MPCClient {
         return this.coboFetch("GET", "/v1/custody/mpc/get_rare_satoshis/", params)
     }
 
+    GetUTXOAssets = (coin: string, tx_hash: string, vout_n: number) => {
+        let params: any = { "coin": coin, "tx_hash": tx_hash, "vout_n": vout_n }
+
+        return this.coboFetch("GET", "/v1/custody/mpc/get_utxo_assets/", params)
+    }
+
+    GetOrdinalsInscription = (inscription_id: string) => {
+        let params: any = { "inscription_id": inscription_id}
+
+        return this.coboFetch("GET", "/v1/custody/mpc/get_ordinals_inscription/", params)
+    }
+
     GetMaxSendAmount = (coin: string, fee_rate: string, to_address: string, from_address?: string,) => {
         let params: any = {
             "coin": coin,
