@@ -466,6 +466,60 @@ export class MPCClient {
 
         return this.coboFetch("GET", "/v1/custody/mpc/get_max_send_amount/", params)
     }
+
+    BabylonPrepareStaking = (request_id: string, stake_info: string, fee_rate: string, max_staking_fee?: BigInt) => {
+        let params: any = {
+            "request_id": request_id,
+            "stake_info": stake_info,
+            "fee_rate": fee_rate,
+        }
+
+        if (!!max_staking_fee) {
+            params["max_staking_fee"] = max_staking_fee
+        }
+
+        return this.coboFetch("POST", "/v1/custody/mpc/babylon/prepare_staking/", params)
+    }
+
+    BabylonReplaceStakingFee = (request_id: string, related_request_id: string, fee_rate: string, max_staking_fee?: BigInt) => {
+        let params: any = {
+            "request_id": request_id,
+            "related_request_id": related_request_id,
+            "fee_rate": fee_rate,
+        }
+
+        if (!!max_staking_fee) {
+            params["max_staking_fee"] = max_staking_fee
+        }
+        return this.coboFetch("POST","/v1/custody/mpc/babylon/replace_staking_fee/", params)
+    }
+
+    BabylonBroadcastStakingTransaction = (request_id: string) => {
+        let params: any = {
+            "request_id": request_id,
+        }
+
+        return this.coboFetch("POST","/v1/custody/mpc/babylon/broadcast_staking_transaction/", params)
+    }
+
+    BabylonGetStakingInfo = (request_id: string) => {
+        let params: any = {
+            "request_id": request_id,
+        }
+
+        return this.coboFetch("GET","/v1/custody/mpc/babylon/get_staking_info/", params)
+    }
+
+    BabylonListWaitingBroadcastTransactions = (coin: string, address: string) => {
+        let params: any = {
+            "asset_coin": coin,
+            "address": address,
+        }
+
+        return this.coboFetch("GET","/v1/custody/mpc/babylon/list_waiting_broadcast_transactions/", params)
+    }
+
+
     
     coboFetch = async (method: string, path: string, params: any): Promise<ApiResponse> => {
         let nonce = String(new Date().getTime());
