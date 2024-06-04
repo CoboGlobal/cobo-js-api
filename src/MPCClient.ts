@@ -65,10 +65,13 @@ export class MPCClient {
     }
 
 
-    GenerateAddresses = (chain_code: string, count: number) => {
+    GenerateAddresses = (chain_code: string, count: number, encoding?: number) => {
         let params: any = {
             "chain_code": chain_code,
             "count": count,
+        }
+        if (!!encoding) {
+            params["encoding"] = encoding
         }
         return this.coboFetch("POST", "/v1/custody/mpc/generate_addresses/", params)
     }
@@ -517,6 +520,14 @@ export class MPCClient {
         }
 
         return this.coboFetch("GET","/v1/custody/mpc/babylon/list_waiting_broadcast_transactions/", params)
+    }
+
+    GetApprovalDetails = (request_id: string) => {
+        let params: any = {
+            "request_id": request_id,
+        }
+
+        return this.coboFetch("GET","/v1/custody/mpc/get_approval_details/", params)
     }
 
 
