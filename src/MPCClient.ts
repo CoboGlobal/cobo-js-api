@@ -505,6 +505,14 @@ export class MPCClient {
         return this.coboFetch("POST","/v1/custody/mpc/babylon/broadcast_staking_transaction/", params)
     }
 
+    BabylonBatchBroadcastStakingTransaction = (request_ids: string[]) => {
+        let params: any = {
+            "request_ids": request_ids.join(","),
+        }
+
+        return this.coboFetch("POST","/v1/custody/mpc/babylon/batch_broadcast_staking_transaction/", params)
+    }
+
     BabylonGetStakingInfo = (request_id: string) => {
         let params: any = {
             "request_id": request_id,
