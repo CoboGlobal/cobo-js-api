@@ -70,7 +70,7 @@ export class MPCClient {
             "chain_code": chain_code,
             "count": count,
         }
-        if (!!encoding) {
+        if (typeof encoding !== 'undefined') {
             params["encoding"] = encoding
         }
         return this.coboFetch("POST", "/v1/custody/mpc/generate_addresses/", params)
