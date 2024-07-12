@@ -530,6 +530,24 @@ export class MPCClient {
         return this.coboFetch("GET","/v1/custody/mpc/babylon/list_waiting_broadcast_transactions/", params)
     }
 
+    BabylonListTransactionsByStatus = (status: number, address?: string, minCoboId?: string, limit?: number) => {
+        let params: any = {
+            "status": status,
+        }
+
+        if (!!address) {
+            params["address"] = address
+        }
+        if (!!minCoboId) {
+            params["min_cobo_id"] = minCoboId
+        }
+        if(!!limit) {
+            params["limit"] = limit
+        }
+
+        return this.coboFetch("GET","/v1/custody/mpc/babylon/list_transactions_by_status/", params)
+    }
+
     GetApprovalDetails = (request_id: string) => {
         let params: any = {
             "request_id": request_id,
