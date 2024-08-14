@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.52.0] (2024-08-14)
+[v0.52.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.51.0...v0.52.0
+### Added
+- Add New API `BabylonDropStaking` for MPC Wallet. https://github.com/CoboGlobal/cobo-js-api/pull/74
+
 ## [v0.51.0] (2024-07-15)
 [v0.51.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.50.0...v0.51.0
 ### Added
