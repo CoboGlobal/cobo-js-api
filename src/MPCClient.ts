@@ -497,6 +497,19 @@ export class MPCClient {
         return this.coboFetch("POST","/v1/custody/mpc/babylon/replace_staking_fee/", params)
     }
 
+    BabylonDropStaking = (request_id: string, related_request_id: string, fee_rate: string, max_staking_fee?: BigInt) => {
+        let params: any = {
+            "request_id": request_id,
+            "related_request_id": related_request_id,
+            "fee_rate": fee_rate,
+        }
+
+        if (!!max_staking_fee) {
+            params["max_staking_fee"] = max_staking_fee
+        }
+        return this.coboFetch("POST","/v1/custody/mpc/babylon/drop_staking/", params)
+    }
+
     BabylonBroadcastStakingTransaction = (request_id: string) => {
         let params: any = {
             "request_id": request_id,
