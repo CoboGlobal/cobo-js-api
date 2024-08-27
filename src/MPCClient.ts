@@ -510,6 +510,33 @@ export class MPCClient {
         return this.coboFetch("POST","/v1/custody/mpc/babylon/drop_staking/", params)
     }
 
+    BabylonUnbonding = (request_id: string, staking_request_id: string) => {
+        let params: any = {
+            "request_id": request_id,
+            "staking_request_id": staking_request_id,
+        }
+        return this.coboFetch("POST", "/v1/custody/mpc/babylon/unbonding/", params)
+    }
+
+
+    BabylonWithdraw = (request_id: string, fee_rate: string, max_fee_amount?: bigint, unbonding_request_id?: string, staking_request_id?: string) => {
+        let params: any = {
+            "request_id": request_id,
+            "fee_rate": fee_rate,
+        }
+        if (!!max_fee_amount) {
+            params["max_fee_amount"] = max_fee_amount
+        }
+        if (!!unbonding_request_id) {
+            params["unbonding_request_id"] = unbonding_request_id
+        }
+        if (!!staking_request_id) {
+            params["staking_request_id"] = staking_request_id
+        }
+        return this.coboFetch("POST", "/v1/custody/mpc/babylon/withdraw/", params)
+    }
+
+
     BabylonBroadcastStakingTransaction = (request_id: string) => {
         let params: any = {
             "request_id": request_id,
