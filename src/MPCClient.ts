@@ -387,7 +387,7 @@ export class MPCClient {
             params["extra_parameters"] = extra_parameters
         }
 
-        return this.coboFetch("GET", "/v1/custody/mpc/estimate_fee/", params)
+        return this.coboFetch("POST", "/v1/custody/mpc/estimate_fee/", params)
 
     }
 
