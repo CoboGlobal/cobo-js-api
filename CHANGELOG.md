@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.53.0] (2024-09-02)
+[v0.53.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.52.0...v0.53.0
+### Added
+- Add New API `BabylonUnbonding` and `BabylonWithdraw` for MPC Wallet. https://github.com/CoboGlobal/cobo-js-api/pull/76
+- The method of the `EstimateFee` API for the MPC wallet has been changed from GET to POST. https://github.com/CoboGlobal/cobo-js-api/pull/77
+
 ## [v0.52.0] (2024-08-14)
 [v0.52.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.51.0...v0.52.0
 ### Added
