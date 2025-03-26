@@ -4,8 +4,13 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [v0.55.0] (2025-03-26)
+[v0.55.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.54.0...v0.55.0
+### Added
+- Support babylon staking register. https://github.com/CoboGlobal/cobo-js-api/pull/85
+
 ## [v0.54.0] (2025-02-27)
-[0.54.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.53.0...v0.54.0
+[v0.54.0]: https://github.com/CoboGlobal/cobo-js-api/compare/v0.53.0...v0.54.0
 ### Added
 - Add babylon airdrop interface. https://github.com/CoboGlobal/cobo-js-api/pull/81
 
