@@ -366,6 +366,11 @@ export class Client {
         return this.coboFetch("GET", "/v1/custody/get_gas_station_balance/", params);
     };
 
+    addCoin = (coin: string) => {
+        let params: any = {"coin": coin};
+        return this.coboFetch("POST", "/v1/custody/add_coin/", params);
+    };
+
     coboFetch = async (method: string, path: string, params: any): Promise<ApiResponse> => {
         let nonce = String(new Date().getTime());
         let sort_params = Object.keys(params).sort().map((k) => {
